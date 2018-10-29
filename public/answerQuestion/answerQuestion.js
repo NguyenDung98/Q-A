@@ -26,26 +26,17 @@ function display_enter() {
 }
 
 function add_Cmt() {
-    var content = commentInput.value;
-    var newComment = {
-        comment: content
-    };
+    var comment = commentInput.value;
+    var newComment = {comment};
     axios.post('/api/answer/', newComment)
         .then(comment => comment.data)
         .then(comment => {
-            socket.emit('addCommentToDOM', comment);
+            // đẩy dữ liệu qua kênh 'addComment'
+            socket.emit('addComment', comment);
         })
         .catch(error => {
             alert(error);
         });
-
-    // đẩy dữ liệu qua kênh 'addComment'
-    // socket.emit('addComment', {
-    //     comment: content,
-    //     id: Math.random().toString(),
-    //     userID
-    // });
-
     commentInput.value = "";
 }
 
@@ -53,21 +44,21 @@ function add_Cmt() {
 function addCommentToDOM(commentData) {
     var comment = document.createElement('div');
     comment.classList.add('comment');
-    comment.id = commentData.id; // thêm id cho mỗi comment
+    comment.id = commentData._id; // thêm id cho mỗi comment
     comment.innerHTML =
-        "<div class=\"people\">Anonymous •</div>" +
+        `<div class=\"people\">${commentData.user} •</div>` +
         "<div class=\"time\">0 phút trước</div>" +
         `<p class="comment-content">${commentData.comment}</p>` +
         "<div class=\"vote-area\">" +
-            "<div style=\"float: left;\">" +
-                `<span class=\"upVote-count\">${commentData.voteUp}</span>` +
-                `<button class=\"up-vote\" ><i class=\"fa fa-angle-up\"></i></button> ` +
-                "<span style=\"color:#d6d6d6\">|</span>" +
-            "</div>" +
-            "<div>" +
-                `<span class=\"downVote-count\" >${commentData.voteDown}</span>` +
-                "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
-            "</div>" +
+        "<div style=\"float: left;\">" +
+        `<span class=\"upVote-count\">${commentData.voteUp}</span>` +
+        `<button class=\"up-vote\" ><i class=\"fa fa-angle-up\"></i></button> ` +
+        "<span style=\"color:#d6d6d6\">|</span>" +
+        "</div>" +
+        "<div>" +
+        `<span class=\"downVote-count\" >${commentData.voteDown}</span>` +
+        "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
+        "</div>" +
         "</div>";
     commentBox.append(comment);
 
@@ -101,14 +92,14 @@ function addEventToButton(button, type) {
 // affectedButton: là phần bị ảnh hưởng cần được điều chỉnh lại (VD: 1 người chỉ có thể hoặc tăng vote hoặc giảm vote cho 1 comment)
 function handleVoteComment(voteButton, affectedButton, voteData) {
     voteButton.previousElementSibling.innerHTML = voteData.count;
-    if(voteData.type == "upVote"){
-        axios.put(`/api/answer/${commentID}`, {voteUp: voteData.count})
+    if (voteData.type === "upVote") {
+        axios.put(`/api/answer/${voteData.commentID}`, {voteUp: voteData.count})
             .then(comment => comment.data)
             .catch(error => {
                 console.log(error)
             });
-    }else{
-        axios.put(`/api/answer/${commentID}`, {voteDown: voteData.count})
+    } else {
+        axios.put(`/api/answer/${voteData.commentID}`, {voteDown: voteData.count})
             .then(comment => comment.data)
             .catch(error => {
                 console.log(error)

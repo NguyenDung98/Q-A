@@ -1,10 +1,10 @@
 let router  = require('express').Router(),
-	helper = require('../helpers/answer'),
-	db	   = require('../models');
+	helper = require('../helpers/comment');
 
-router.route('/answer')
+router.route('/')
 	.get(helper.getAllComment)
 	.post(helper.createComment);
+
 router.route('/:commentID')
 	.put(helper.updateComment);
 module.exports = router;

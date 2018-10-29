@@ -1,0 +1,204 @@
+body{
+	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f3f3f4;
+}
+
+#header{
+	text-align: center;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+}
+
+#container{
+	width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#btn{
+	background-color: white;
+    cursor: pointer;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	font-size: 0.9em;
+	padding: 15px 35px;
+	margin-bottom: 5px;
+}
+
+#btn:hover{
+	background-color: rgba(62, 111, 174, 0.82);
+}
+
+#session-list-container{
+	/*background-color: white;
+	height: 60%;
+	margin-bottom: 30px;
+	padding: 20px;
+	overflow: auto;
+	z-index: 1;
+	position: relative;*/
+	/*display: inline-block;*/
+	flex-direction: row;
+	border-radius: 5px;
+	padding-top: 20px;
+}
+
+#lecturer-list{
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	display: inline-block;
+}
+
+#plus-button{
+	width: 100%;
+	background-color: white;
+    cursor: pointer;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	font-size: 0.9em;
+	padding: 15px 35px;
+	margin-bottom: 5px;
+}
+
+table tr:nth-child(even){
+	background-color: #cdd2d8;
+}
+
+#student-list{
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	display: inline-block;
+}
+
+table td {
+   border: 1px solid #aaa;
+   border-radius: 4px;
+}
+
+.tb1Name{
+	width: 44%;
+	background-color: white;
+	height: 60%;
+	margin-bottom: 30px;
+	padding: 20px;
+	overflow: auto;
+	z-index: 1;
+	position: relative;
+	float: left;
+	border-radius: 5px;
+}
+
+.tb2Name{
+	width: 44%;
+	float: right;
+	background-color: white;
+	height: 60%;
+	margin-bottom: 30px;
+	padding: 20px;
+	overflow: auto;
+	z-index: 1;
+	position: relative;
+	border-radius: 5px;
+}
+
+.session{
+	cursor: pointer;
+}
+
+.icon-session{
+	width: 80px;
+}
+
+.session-info{
+}
+
+.schedule{
+	color: gray;
+	font-size: 80%;
+}
+
+.session-name{
+	width: 360px;
+	padding: 5px;
+	font-size: 130%;
+}
+
+.session :hover{
+	background-color: #E3E3E3;
+}
+#plus, #del{
+	cursor: pointer;
+	font-size: 20px;
+}
+#plus:hover, #del:hover{
+	color: red;
+}
+#del{
+	width: 50px;
+}
+.editInput{
+	display: none;
+}
+/*popup------------------------------*/
+.form-popup {
+	margin: auto;
+	margin-bottom: -200px;
+	width: 300px;
+	display: none;
+	bottom: 0;
+	right: 15px;
+	border: 3px solid #f1f1f1;
+	z-index: 1000;
+	position: relative;
+}
+
+.form-container {
+  width: 90%;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input[type=text]{
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.form-container input[type=text]:focus{
+  background-color: #ddd;
+  outline: none;
+  border-radius: 5px;
+}
+
+.form-container .btn {
+  background-color: #325386d1;
+  color: white;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  margin-bottom:10%;
+  border-radius: 5px;
+}
+
+.form-container .btn:hover{
+  opacity: 1;
+}
+.form-container .save{
+	margin-right: 30%;
+}
+
+#del{
+	font-family: Comic Sans MS;
+}
