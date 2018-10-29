@@ -8,6 +8,17 @@ var userID = 1 + Math.random();
 
 var socket = io(); // kênh truyền dữ liệu
 
+axios.get('/api/answer/')
+    .then(comments => comments.data)
+    .then(comments => {
+        comments.forEach(comment => {
+            addCommentToDOM(comment)
+        })
+    })
+    .catch(error => {
+        console.log(error)
+    });
+
 function display_enter() {
     if (document.getElementById("enter-button").style.display == "none") {
         document.getElementById("enter-button").style.display = "block";
@@ -16,13 +27,24 @@ function display_enter() {
 
 function add_Cmt() {
     var content = commentInput.value;
+    var newComment = {
+        comment: content
+    };
+    axios.post('/api/answer/', newComment)
+        .then(comment => comment.data)
+        .then(comment => {
+            socket.emit('addCommentToDOM', comment);
+        })
+        .catch(error => {
+            alert(error);
+        });
 
     // đẩy dữ liệu qua kênh 'addComment'
-    socket.emit('addComment', {
-        comment: content,
-        id: Math.random().toString(),
-        userID
-    });
+    // socket.emit('addComment', {
+    //     comment: content,
+    //     id: Math.random().toString(),
+    //     userID
+    // });
 
     commentInput.value = "";
 }
@@ -38,12 +60,12 @@ function addCommentToDOM(commentData) {
         `<p class="comment-content">${commentData.comment}</p>` +
         "<div class=\"vote-area\">" +
             "<div style=\"float: left;\">" +
-                "<span class=\"upVote-count\">0</span>\n" +
+                `<span class=\"upVote-count\">${commentData.voteUp}</span>` +
                 `<button class=\"up-vote\" ><i class=\"fa fa-angle-up\"></i></button> ` +
                 "<span style=\"color:#d6d6d6\">|</span>" +
             "</div>" +
             "<div>" +
-                "<span class=\"downVote-count\" >0</span> " +
+                `<span class=\"downVote-count\" >${commentData.voteDown}</span>` +
                 "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
             "</div>" +
         "</div>";
@@ -79,6 +101,19 @@ function addEventToButton(button, type) {
 // affectedButton: là phần bị ảnh hưởng cần được điều chỉnh lại (VD: 1 người chỉ có thể hoặc tăng vote hoặc giảm vote cho 1 comment)
 function handleVoteComment(voteButton, affectedButton, voteData) {
     voteButton.previousElementSibling.innerHTML = voteData.count;
+    if(voteData.type == "upVote"){
+        axios.put(`/api/answer/${commentID}`, {voteUp: voteData.count})
+            .then(comment => comment.data)
+            .catch(error => {
+                console.log(error)
+            });
+    }else{
+        axios.put(`/api/answer/${commentID}`, {voteDown: voteData.count})
+            .then(comment => comment.data)
+            .catch(error => {
+                console.log(error)
+            });
+    }
     if (affectedButton.firstChild.classList.contains('vote-icon-clicked') && userID === voteData.userID && !voteData.stopChaining) {
         affectedButton.firstChild.classList.remove('vote-icon-clicked');
         let count = affectedButton.previousElementSibling;
@@ -103,7 +138,7 @@ function sortComments() {
             downVoteSelector = '.vote-area .downVote-count';
         let orderOfA = Number(a.querySelector(upVoteSelector).innerText) - Number(a.querySelector(downVoteSelector).innerText),
             orderOfB = Number(b.querySelector(upVoteSelector).innerText) - Number(b.querySelector(downVoteSelector).innerText);
-        return compare(orderOfB, orderOfA);
+        return orderOfA < orderOfB;
     });
     for (let i = 0; i < comments.length; i++) {
         comments[i].outerHTML = commentsArray[i].outerHTML;
@@ -111,15 +146,6 @@ function sortComments() {
         addEventToButton(upVoteBtns[i], 'upVote');
         addEventToButton(downVoteBtns[i], 'downVote');
     }
-}
-
-function compare(val_1, val_2) {
-    if (val_1 < val_2) {
-        return -1;
-    } else if (val_1 > val_2) {
-        return 1;
-    }
-    return 0;
 }
 
 // kênh thêm comment
