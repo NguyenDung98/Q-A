@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="addSession/addSession.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!--------------TOP---------------->	
+		<div class="w3-bar" style="background-color: #325386d1;">
+			
+				<a href="/session" class="w3-button w3-bar-item top-menu-button" style="text-decoration: none;top: 10px">Bảng điều khiển</a>
+				
+				<a class="w3-bar-item top-menu-button w3-right w3-button" style="width: 5%">
+					<i class="fa fa-bell-o"></i>
+				</a> 
+				<div class="w3-dropdown-click w3-right" style="padding:  0px">
+				    <a class="w3-button w3-bar-item top-menu-button " onclick="dropclick()" style="border: none;margin: 0px">Tài khoản
+				     	<i class="fa fa-angle-down"></i>
+				    </a>
+				    <div class="w3-dropdown-content w3-bar-block w3-border" id="dropContent" style="position: absolute;">
+				      <a href="/session" class="w3-bar-item w3-button">Bảng của tôi</a>
+				      <a href="#" class="w3-bar-item w3-button">Hồ sơ</a>
+				    </div>
+				</div>
+				
+		</div>
+
+<!------------PAGE-CONTENT------------>
+	<div class="container">
+
+		<div class="w3-bar">
+			
+			<label class="w3-bar-item" style="font-size: 20px">Bảng của tôi</label>
+
+			<input class="w3-input w3-bar-item w3-right" type="text" name="search" placeholder="Tìm kiếm ...">
+			<i class="fa fa-search w3-right w3-round-medium" style="padding: 12px; background-color: white;"></i>
+
+		</div>
+
+		<div>
+
+			<!------------------  MODEL CREATE EVENT ---------------------------->
+			<div class="w3-modal" style="padding-top: 150px;" id="new-event-modal">
+				<div class="w3-modal-content">
+					<header class="w3-container w3-teal">
+						<span class="w3-button w3-right" onclick="closeNewEventBox()"><i class="fa fa-close"></i></span>
+						<h3>Sự kiện mới</h3>
+					</header>
+					<div class="w3-container" style="margin-top: 20px;">
+						<div class="w3-container">
+							<input class="w3-input" type="text" name="event-name" placeholder="Tên sự kiện ..." id="event-name" autofocus>
+						</div>
+						<br>
+						<div class="w3-container">
+							<input class="w3-input" type="text" name="event-pass" placeholder="Mã sự kiện ..." id="event-pass">
+						</div>
+						<br>
+						<div class="w3-container w3-bar">
+							<div class="w3-bar-item">
+								<label style="font-weight: bold;">Ngày bắt đầu</label>
+								<input class="w3-input" type="date" name="begin-time" id="begin-time">
+							</div>
+							<div class="w3-bar-item">
+								<label style="font-weight: bold;">Ngày kết thúc</label>
+								<input class="w3-input" type="date" name="end-time" id="end-time">
+							</div>
+						</div>
+						<br>
+					</div>
+					<div class="w3-container">
+						<button class="w3-button w3-right" onclick="closeNewEventBox()">Hủy</button>
+						<button class="w3-button w3-right" onclick="getVal()">Thêm</button>
+					</div>
+				<br>
+				</div>
+			</div>
+			
+			<!------------------ CREATE PLAN -------------->	
+			<div class="w3-row" style="margin-top: 30px;">
+				<a type="button" class="w3-col s5" style="border: none; background-color: inherit;" onclick="newEventBox()">
+					<div class="w3-card w3-white w3-hover-text-teal w3-round-medium" style=" cursor: pointer;">
+						<div class="w3-bar" style="opacity: 0.7;">
+							<div class="w3-bar-item" style="padding: 23px 10px 10px 20px;">
+								<i class="fa fa-plus w3-xxlarge"></i>
+							</div>
+							<div class="w3-bar-item w3-right" style="padding: 10px 25px 10px 10px">
+								<lable style="display: block; font-size: 25px; text-align: center;">Tạo sự kiện mới</lable>
+								<lable style="display: block; font-size: 13px;text-align: center;">Kế hoạch cơ bản với 1 Q&A và 1 cuộc thăm dò ý kiến </lable>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+
+				<!------------------ EVENT LIST ----------------->
+
+			<div class="w3-row" id="event-list">				
+				<div class="w3-col s3">
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="addSession/addSession.js"></script>
+
+</body>
+</html>
