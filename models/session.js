@@ -5,7 +5,7 @@ let sessionSchema = new mongoose.Schema({
         type: String,
         required: 'Name event is required!'
     },
-    password: {
+    eventCode: {
         type: String,
         required: 'Event code is required!'
     },

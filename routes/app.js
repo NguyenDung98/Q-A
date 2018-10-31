@@ -9,6 +9,10 @@ router.get('/answer', (req, res) => {
     res.sendFile(prevDir + "/views/answerQuestion.html");
 });
 
+router.get('/session', (req, res) => {
+    res.sendFile(prevDir + "/views/addSession.html");
+});
+
 router.get('/userManagement', (req, res) => {
     res.sendFile(prevDir + '/views/userManagement.html')
 });

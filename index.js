@@ -5,6 +5,7 @@ let express       = require("express"),
     io            = require('socket.io')(http),
     questionRoute = require('./routes/question'),
     answerRoute   = require('./routes/comment'),
+    sessionRoute  = require('./routes/session'),
     appRoute      = require('./routes/app');
 
 // cau hinh express
@@ -15,6 +16,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 app.use('/api/question', questionRoute);
 app.use('/api/answer', answerRoute);
+app.use('/api/session', sessionRoute);
 app.use('', appRoute);
 
 io.on('connection', socket => {
@@ -31,6 +33,10 @@ io.on('connection', socket => {
     });
     socket.on('moreVoteComment', vote => {
         io.emit('moreVoteComment', vote);
+    });
+    // kenh them session
+    socket.on('addSession', session => {
+        io.emit('addSession', session)
     })
 });
 
