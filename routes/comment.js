@@ -7,4 +7,8 @@ router.route('/')
 
 router.route('/:commentID')
 	.put(helper.updateComment);
+
+router.route('/:questionID')
+	.get(helper.getCommentByQuestionID);
+
 module.exports = router;

@@ -5,18 +5,19 @@ var commentsNumber = document.getElementById('comment-number');
 var upVoteBtns = document.getElementsByClassName('up-vote');
 var downVoteBtns = document.getElementsByClassName('down-vote');
 var userID = 1 + Math.random();
+var questionID = document.getElementsByTagName('body')[0].id;
 
 var socket = io(); // kênh truyền dữ liệu
 
-axios.get('/api/answer/')
+axios.get(`/api/answer/${questionID}`)
     .then(comments => comments.data)
     .then(comments => {
         comments.forEach(comment => {
             addCommentToDOM(comment)
         })
     })
-    .catch(error => {
-        console.log(error)
+    .catch(() => {
+        window.location.href = '/asking';
     });
 
 function display_enter() {
@@ -27,12 +28,18 @@ function display_enter() {
 
 function add_Cmt() {
     var comment = commentInput.value;
-    var newComment = {comment};
+    var newComment = {comment, question: questionID};
     axios.post('/api/answer/', newComment)
         .then(comment => comment.data)
         .then(comment => {
-            // đẩy dữ liệu qua kênh 'addComment'
-            socket.emit('addComment', comment);
+            axios.put(`/api/question/${questionID}`, {comment: comments.length + 1})
+                .then(() => {
+                    // đẩy dữ liệu qua kênh 'addComment'
+                    socket.emit('addComment', comment);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         })
         .catch(error => {
             alert(error);

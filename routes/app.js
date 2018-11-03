@@ -1,20 +1,19 @@
 let router = require('express').Router();
-const prevDir = __dirname.substr(0, __dirname.lastIndexOf('\\'));
 
 router.get('/asking', (req, res) => {
-    res.sendFile(prevDir + "/views/askingQuestion.html");
+    res.render('askingQuestion')
 });
 
-router.get('/answer', (req, res) => {
-    res.sendFile(prevDir + "/views/answerQuestion.html");
+router.get('/:questionID/answer', (req, res) => {
+    res.render('answerQuestion', {questionID: req.params.questionID})
 });
 
 router.get('/session', (req, res) => {
-    res.sendFile(prevDir + "/views/addSession.html");
+    res.render('addSession')
 });
 
 router.get('/userManagement', (req, res) => {
-    res.sendFile(prevDir + '/views/userManagement.html')
+    res.render('userManagement')
 });
 
 module.exports = router;

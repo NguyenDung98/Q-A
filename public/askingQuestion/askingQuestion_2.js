@@ -29,7 +29,7 @@ function addQuestion(newQuestion) {
         cell2.innerHTML += '<br/>';
     }
     if (breakLines > 2) cell2.innerHTML += '<br/>';
-    cell2.innerHTML += '<a type="button" href="/answer" class="reply-button">Phản hồi</a>';
+    cell2.innerHTML += `<a type="button" href="${newQuestion._id}/answer" class="reply-button">${newQuestion.comment} phản hồi</a>`;
     // sap xep lai cac cau hoi
     sortQuestions();
 }

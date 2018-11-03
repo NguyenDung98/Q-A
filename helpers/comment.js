@@ -27,5 +27,14 @@ module.exports = {
 			.catch(error => {
 				res.send(error)
 			})
-	}
+	},
+    getCommentByQuestionID(req, res) {
+        db.Comment.find({question: req.params.questionID})
+            .then(comments => {
+                res.json(comments)
+            })
+            .catch(error => {
+                res.send(error)
+            })
+    }
 };
