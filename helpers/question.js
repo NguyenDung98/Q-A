@@ -27,5 +27,14 @@ module.exports = {
             .catch(error => {
                 res.sendFile(error)
             })
+    },
+    getQuestionByID(questionID) {
+        return db.Question.findById(questionID)
+            .then(question => {
+                return question;
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 };

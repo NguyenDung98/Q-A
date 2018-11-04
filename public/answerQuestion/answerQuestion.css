@@ -27,11 +27,12 @@ button:focus, textarea:focus {
 
 .people{
 	float: left;
-	width: 100px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	padding-right: 15px;
 	color: #898b95;
 	font-size: 14px;
+	min-width: 85px;
 }
 
 

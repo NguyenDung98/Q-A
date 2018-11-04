@@ -21,49 +21,52 @@ axios.get(`/api/answer/${questionID}`)
     });
 
 function display_enter() {
-    if (document.getElementById("enter-button").style.display == "none") {
+    if (document.getElementById("enter-button").style.display === "none") {
         document.getElementById("enter-button").style.display = "block";
     }
 }
 
 function add_Cmt() {
     var comment = commentInput.value;
-    var newComment = {comment, question: questionID};
-    axios.post('/api/answer/', newComment)
-        .then(comment => comment.data)
-        .then(comment => {
-            axios.put(`/api/question/${questionID}`, {comment: comments.length + 1})
-                .then(() => {
-                    // đẩy dữ liệu qua kênh 'addComment'
-                    socket.emit('addComment', comment);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        })
-        .catch(error => {
-            alert(error);
-        });
+    var newComment = {comment, question: questionID, postTime: new Date()};
+    if (comment) {
+        axios.post('/api/answer/', newComment)
+            .then(comment => comment.data)
+            .then(comment => {
+                axios.put(`/api/question/${questionID}`, {comment: comments.length + 1})
+                    .then(() => {
+                        // đẩy dữ liệu qua kênh 'addComment'
+                        socket.emit('addComment', comment);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            })
+            .catch(error => {
+                alert(error);
+            });
+    }
     commentInput.value = "";
 }
 
 // đẩy comment vào DOM
 function addCommentToDOM(commentData) {
     var comment = document.createElement('div');
+    date =  new Date(commentData.postTime);
     comment.classList.add('comment');
     comment.id = commentData._id; // thêm id cho mỗi comment
     comment.innerHTML =
         `<div class=\"people\">${commentData.user} •</div>` +
-        "<div class=\"time\">0 phút trước</div>" +
+        `<div class=\"time\">${date.toLocaleTimeString()}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${date.toLocaleDateString()}</div>` +
         `<p class="comment-content">${commentData.comment}</p>` +
         "<div class=\"vote-area\">" +
         "<div style=\"float: left;\">" +
-        `<span class=\"upVote-count\">${commentData.voteUp}</span>` +
+        `<span class=\"upVote-count\">${commentData.voteUp}</span> ` +
         `<button class=\"up-vote\" ><i class=\"fa fa-angle-up\"></i></button> ` +
         "<span style=\"color:#d6d6d6\">|</span>" +
         "</div>" +
         "<div>" +
-        `<span class=\"downVote-count\" >${commentData.voteDown}</span>` +
+        `<span class=\"downVote-count\" >${commentData.voteDown}</span> ` +
         "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
         "</div>" +
         "</div>";
@@ -90,8 +93,7 @@ function addEventToButton(button, type) {
         } else {
             sendData.count = Number(count.innerText) - 1;
         }
-        // đẩy dữ liệu qua kênh 'moreVoteComment'
-        socket.emit('moreVoteComment', sendData)
+        updateVoteToServer(sendData)
     })
 }
 
@@ -99,19 +101,6 @@ function addEventToButton(button, type) {
 // affectedButton: là phần bị ảnh hưởng cần được điều chỉnh lại (VD: 1 người chỉ có thể hoặc tăng vote hoặc giảm vote cho 1 comment)
 function handleVoteComment(voteButton, affectedButton, voteData) {
     voteButton.previousElementSibling.innerHTML = voteData.count;
-    if (voteData.type === "upVote") {
-        axios.put(`/api/answer/${voteData.commentID}`, {voteUp: voteData.count})
-            .then(comment => comment.data)
-            .catch(error => {
-                console.log(error)
-            });
-    } else {
-        axios.put(`/api/answer/${voteData.commentID}`, {voteDown: voteData.count})
-            .then(comment => comment.data)
-            .catch(error => {
-                console.log(error)
-            });
-    }
     if (affectedButton.firstChild.classList.contains('vote-icon-clicked') && userID === voteData.userID && !voteData.stopChaining) {
         affectedButton.firstChild.classList.remove('vote-icon-clicked');
         let count = affectedButton.previousElementSibling;
@@ -122,8 +111,7 @@ function handleVoteComment(voteButton, affectedButton, voteData) {
         // giảm biến đếm
         voteData.count = Number(count.innerText) - 1;
         voteData.stopChaining = true; // dừng việc đệ quy gián tiếp
-        // đẩy dữ liệu qua kênh 'moreVoteComment'
-        socket.emit('moreVoteComment', voteData)
+        updateVoteToServer(voteData)
     }
     sortComments();
 }
@@ -144,6 +132,25 @@ function sortComments() {
         addEventToButton(upVoteBtns[i], 'upVote');
         addEventToButton(downVoteBtns[i], 'downVote');
     }
+}
+
+// hàm cập nhật số vote cho comment
+function updateVoteToServer(voteData) {
+    if (voteData.type === "upVote") {
+        axios.put(`/api/answer/${voteData.commentID}`, {voteUp: voteData.count})
+            .then(comment => comment.data)
+            .catch(error => {
+                console.log(error)
+            });
+    } else {
+        axios.put(`/api/answer/${voteData.commentID}`, {voteDown: voteData.count})
+            .then(comment => comment.data)
+            .catch(error => {
+                console.log(error)
+            });
+    }
+    // đẩy dữ liệu qua kênh 'moreVoteComment'
+    socket.emit('moreVoteComment', voteData)
 }
 
 // kênh thêm comment

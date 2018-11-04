@@ -20,7 +20,8 @@ let commentSchema = new mongoose.Schema({
 	question: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Question'
-	}
+	},
+	postTime: Date
 });
 
 let Comment = mongoose.model("Comment", commentSchema);

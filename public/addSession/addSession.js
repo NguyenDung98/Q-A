@@ -87,15 +87,19 @@ function parseMonth(value) {
 }
 
 function mOver(obj) {
-    obj.style.opacity = "0.1";
     var l = obj.children[0].children;
+    l[0].children[0].style.opacity = 0.3;
+    l[1].style.opacity = 0.3;
+    l[2].style.opacity = 0.3;
     l[5].style.visibility = "visible";
     l[0].children[1].style.visibility = "visible";
 }
 
 function mOut(obj) {
-    obj.style.opacity = "1.0";
     var l = obj.children[0].children;
+    l[0].children[0].style.opacity = 1;
+    l[1].style.opacity = 1;
+    l[2].style.opacity = 1;
     l[5].style.visibility = "hidden";
     l[0].children[1].style.visibility = "hidden";
 }
@@ -167,10 +171,10 @@ function addSession(newSession) {
     let beginDate = new Date(newSession.beginDate),
         endDate   = new Date(newSession.endDate);
 
-        newEvent.innerHTML = "<div class=\"w3-card w3-white w3-round-medium\" style=\"margin: 15px 5px 5px 5px; cursor: pointer;\" onmouseover=\"mOver(this)\" onmouseout=\"mOut(this)\">" +
+        newEvent.innerHTML = "<div class=\"w3-card w3-white w3-round-medium\" style=\"margin: 15px 10px 5px 0; cursor: pointer;\" onmouseover=\"mOver(this)\" onmouseout=\"mOut(this)\">" +
         "  <div class=\"w3-container\" style=\"padding: 5px 10px;\">" +
         "	  <div class=\"w3-bar\">" +
-        `		  <label class=\"w3-bar-item w3-large w3-text-teal\" style=\"display: block;\">${newSession.eventCode}</label>` +
+        `		  <label class=\"w3-bar-item w3-large w3-text-teal\" style=\"display: block; padding-left: 0\">${newSession.eventCode}</label>` +
         "		  <button class=\"w3-bar-item w3-right hide inherit-button w3-button w3-hover-teal\" style=\"cursor: pointer;opacity:1.0\" onclick=\"deleteEvent(this)\">" +
         "			  <i class=\"fa fa-close\"></i>" +
         "		  </button>" +
