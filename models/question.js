@@ -17,6 +17,10 @@ let questionSchema = new mongoose.Schema({
     comment: {
         type: Number,
         default: 0
+    },
+    session: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Session'
     }
 });
 

@@ -19,6 +19,15 @@ module.exports = {
                 res.send(error)
             })
     },
+    getSessionByID(sessionID) {
+        return db.Session.findById(sessionID)
+            .then(session => {
+                return session
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
     // updateQuestion(req, res) {
     //     db.Question.findByIdAndUpdate(req.params.questionID, req.body, {new: true})
     //         .then(updatedQuestion => {

@@ -6,11 +6,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="askingQuestion/askingQuestion.css">
+    <link rel="stylesheet" type="text/css" href="/askingQuestion/askingQuestion.css">
 </head>
-<body>
+<body id="<%= session._id %>">
 <div id="header">
-    <h1 id="event-name"><span>Tên bài giảng: </span>Tổng quan về lập trình web</h1>
+    <h1 id="event-name"><span>Tên bài giảng: </span><%= session.eventName %></h1>
     <p id="symbol"><i class="fas fa-book-reader"></i></p>
     <p id="user-id">Xin chào <span></span></p>
 </div>
@@ -31,7 +31,7 @@
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="askingQuestion/askingQuestion_1.js"></script>
-<script src="askingQuestion/askingQuestion_2.js"></script>
+<script src="/askingQuestion/askingQuestion_1.js"></script>
+<script src="/askingQuestion/askingQuestion_2.js"></script>
 </body>
 </html>

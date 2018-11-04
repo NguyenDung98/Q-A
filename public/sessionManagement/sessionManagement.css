@@ -1,0 +1,23 @@
+.container{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
+.clear{
+	clear: both;
+}
+
+.session-option{
+	cursor: pointer;
+	background-color: inherit;
+}
+
+.session{
+	cursor: pointer;
+}
+
+.fade{
+	opacity: 0.5;
+}

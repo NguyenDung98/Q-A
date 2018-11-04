@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let sessionSchema = new mongoose.Schema({
-    nameEvent: {
+    eventName: {
         type: String,
         required: 'Name event is required!'
     },

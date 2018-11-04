@@ -56,8 +56,8 @@ function addCommentToDOM(commentData) {
     comment.classList.add('comment');
     comment.id = commentData._id; // thêm id cho mỗi comment
     comment.innerHTML =
-        `<div class=\"people\">${commentData.user} •</div>` +
-        `<div class=\"time\">${date.toLocaleTimeString()}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${date.toLocaleDateString()}</div>` +
+        `<div class=\"people\">${commentData.user}&nbsp&nbsp&nbsp•</div>` +
+        `<div class=\"time\">${date.toLocaleTimeString()}&nbsp&nbsp&nbsp${date.toLocaleDateString()}</div>` +
         `<p class="comment-content">${commentData.comment}</p>` +
         "<div class=\"vote-area\">" +
         "<div style=\"float: left;\">" +

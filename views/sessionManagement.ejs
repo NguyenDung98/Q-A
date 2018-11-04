@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Panel</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" type="text/css" href="/sessionManagement/sessionManagement.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body style="font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif; background-color: #325386d1">
+	<div class="container">
+		<div class="w3-container w3-center w3-xxlarge" style="color: #ffdb4f;">Giao diện quản lý</div>
+		<div class="w3-container" style="margin-top: 100px; color: #ffdb4f;">Chọn một phiên hỏi đáp</div>
+
+
+		<!------------------------- MODAL ADD SESSION ---------------------------->
+		<div id="add-session-box" class="w3-modal" style="padding-top: 100px;">
+			<div class="w3-modal-content">
+				<header class="w3-container" style="background-color: #325386d1;">
+					<span class="w3-button w3-right" id="close-modal-add-session" style="color: #ffdb4f;"><i class="fa fa-close"></i></span>
+					<h3 style="color: #ffdb4f;">Tạo phiên hỏi đáp</h3>
+				</header>
+				<div class="w3-container" style="margin-top: 20px;">
+					<div class="w3-container">
+						<input class="w3-input" type="text" name="session-name" placeholder="Tên phiên hỏi đáp ..." id="session-name">
+					</div>
+					<br>
+					<div class="w3-container w3-bar">
+						<label class="w3-bar-item" style="font-weight: bold;">Từ</label><input class="w3-bar-item w3-input" type="datetime-local" name="begin-time" id="begin-time">
+						<label class="w3-bar-item" style="font-weight: bold;">Đến</label><input class="w3-bar-item w3-input" type="datetime-local" name="end-time" id="end-time">
+					</div>
+					<br>
+				</div>
+
+				<div class="w3-container">
+					<button class="w3-button w3-right" id="cancel-add-session-btn">Hủy</button>
+					<button class="w3-button w3-right" id="confirm-add-btn">Thêm</button>
+				</div>
+				<br>
+
+			</div>
+		</div>
+
+		<!------------------- SESSION LIST --------------------------------->
+		<div class="w3-panel w3-white w3-round" style="overflow: auto; height: 300px;" id="list">
+
+			<div class="w3-bar w3-hover-light-gray w3-margin w3-round">
+				<div class="w3-bar-item">
+					<label class="w3-small w3-text-gray" style="display: block;">13 Oct 8:00am - 19 Oct 10:59pm</label>
+					<label style="display: block;">Session 1</label>
+				</div>
+				<button class="w3-bar-item w3-right session-option end-session" onclick="endSession(this)">
+					<i class="fa fa-close" style="display: block;"></i>
+					<label style="display: block; cursor: pointer;">Kết thúc</label>
+				</button>
+				<button class="w3-bar-item w3-right session-option close-session" onclick="closeSession(this)">
+					<i class="fa fa-minus-circle" style="display: block;"></i>
+					<label style="display: block; cursor: pointer;">Đóng</label>
+				</button>
+			</div>
+
+			<div class="w3-bar w3-hover-light-gray w3-margin w3-round fade">
+				<div class="w3-bar-item">
+					<label class="w3-small w3-text-gray" style="display: block;">13 Oct 8:00am - 19 Oct 10:59pm</label>
+					<label style="display: block;">Session 2</label>
+				</div>
+				<button class="w3-bar-item w3-right session-option end-session" onclick="endSession(this)">
+					<i class="fa fa-close" style="display: block;"></i>
+					<label style="display: block; cursor: pointer;">Kết thúc</label>
+				</button>
+				<button class="w3-bar-item w3-right session-option active-session" onclick="activeSession(this)">
+					<i class="fa fa-check-circle" style="display: block;"></i>
+					<label style="display: block; cursor: pointer;">Kích hoạt</label>
+				</button>
+			</div>
+
+		</div>
+
+		<button class="w3-button w3-right w3-white" id="add-session-btn">Thêm phiên hỏi đáp</button>
+
+		<p id="output"></p>
+	</div>
+
+
+	<script type="text/javascript" src="/sessionManagement/sessionManagement.js"></script>
+</body>
+</html>

@@ -1,11 +1,12 @@
-let inputBox = document.getElementById('form-input');
-let questionInput = document.getElementById("input-question");
-let authorInput = document.getElementById("input-author");
-let doneButton = document.getElementById("done-button");
-let cancelButton = document.getElementById("cancel-button");
-let table = document.getElementsByTagName('table')[0];
-let voteIcons = document.getElementsByClassName('vote-icon');
-let userIdentify = document.querySelector('#user-id span');
+let inputBox = document.getElementById('form-input'),
+    questionInput = document.getElementById("input-question"),
+    authorInput = document.getElementById("input-author"),
+    doneButton = document.getElementById("done-button"),
+    cancelButton = document.getElementById("cancel-button"),
+    table = document.getElementsByTagName('table')[0],
+    voteIcons = document.getElementsByClassName('vote-icon'),
+    userIdentify = document.querySelector('#user-id span'),
+    sessionID = document.getElementsByTagName('body')[0].id;
 
 // local variables
 let userID = 1 + Math.random();
@@ -24,7 +25,7 @@ userIdentify.innerText += userID;
 inputBox.append(bigLoader);
 
 // lấy dữ liệu từ server
-axios.get('/api/question/')
+axios.get(`/api/question/${sessionID}`)
     .then(questions => questions.data)
     .then(questions => {
         inputBox.removeChild(bigLoader);
@@ -45,7 +46,8 @@ function getVal() {
         let newQuestion = {
             user,
             question: questionInput.value,
-            postTime: new Date()
+            postTime: new Date(),
+            session: sessionID
         };
         inputBox.append(bigLoader);
         // đẩy câu hỏi mới lên server

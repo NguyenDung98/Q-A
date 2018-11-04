@@ -1,6 +1,6 @@
 // var hide = getElementByClassName("hide");
 var newEventModal = document.getElementById("new-event-modal");
-var eventName = document.getElementById("event-name");
+var eventNameInput = document.getElementById("event-name");
 var eventPassword = document.getElementById("event-pass");
 var eventBegin = document.getElementById("begin-time");
 var eventEnd = document.getElementById("end-time");
@@ -123,7 +123,7 @@ window.onclick = function (event) {
     if (event.target == newEventModal) {
         newEventModal.style.display = "none";
     }
-}
+};
 
 function addSession(newSession) {
     // if (eventName.value==""){
@@ -179,10 +179,10 @@ function addSession(newSession) {
         "			  <i class=\"fa fa-close\"></i>" +
         "		  </button>" +
         "	  </div>" +
-        `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.nameEvent}</label>` +
+        `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.eventName}</label>` +
         `	  <label class=\"w3-small\" style=\"display: block; opacity: 0.5;\">${beginDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}</label>` +
         "	  <br><br>" +
-        "	  <a href='/asking' target=_blank type=\"button\" class=\"w3-button w3-block hide w3-teal w3-hover-teal\" style=\"opacity:1.0\">Load</a>" +
+        `	  <a href='/session/${newSession._id}' type=\"button\" class=\"w3-button w3-block hide w3-teal w3-hover-teal\" style=\"opacity:1.0\">Load</a>`+
         "  </div>" +
         "</div>";
 
@@ -207,11 +207,11 @@ function addSession(newSession) {
 
 function getVal() {
     // let user = authorInput.value.trim() ? authorInput.value.trim() : "Ẩn danh";
-    let nameEvent = eventName.value;
+    let eventName = eventNameInput.value;
     let eventCode = eventPassword.value;
     let beginDate = eventBegin.value;
     let endDate = eventEnd.value;
-    if (nameEvent === "") {
+    if (eventNameInput === "") {
         alert("Hãy thêm tên sự kiện");
     }
     else if (eventCode === "") {
@@ -224,7 +224,7 @@ function getVal() {
         alert("Sự kiện chưa có ngày kết thúc");
     } else {
         let newSession = {
-            nameEvent,
+            eventName,
             eventCode,
             beginDate,
             endDate

@@ -8,16 +8,16 @@
 </head>
 <body id="<%= question._id %>">
 <div id="top">
-    <div class="container"><p id="event-name">Tổng quan về lập trình web</p></div>
+    <div class="container"><p id="event-name"><%= eventName %></p></div>
 </div>
 <div>
     <div class="container" style="padding-bottom: 0">
         <div class="question-box">
-            <div class="people"><%= question.user %></div>
+            <div class="people"><%= question.user %>&nbsp&nbsp&nbsp•</div>
             <% var date =  new Date(question.postTime) %>
             <div class="time">
                 <%= date.toLocaleTimeString() %>
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp
                 <%= date.getDate() + '/' + Number(date.getMonth() + 1) + '/' + date.getFullYear()%>
             </div>
             <div id="question-content"><span style="color: #325386d1; font-size: 18px;">Câu hỏi: </span><%= question.question %>

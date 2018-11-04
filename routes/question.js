@@ -8,4 +8,7 @@ router.route('/')
 router.route("/:questionID")
     .put(helpers.updateQuestion);
 
+router.route('/:sessionID')
+    .get(helpers.getQuestionBySessionId);
+
 module.exports = router;

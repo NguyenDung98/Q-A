@@ -29,7 +29,7 @@ function addQuestion(newQuestion) {
         cell2.innerHTML += '<br/>';
     }
     if (breakLines > 2) cell2.innerHTML += '<br/>';
-    cell2.innerHTML += `<a type="button" href="${newQuestion._id}/answer" class="reply-button">${newQuestion.comment} phản hồi</a>`;
+    cell2.innerHTML += `<a type="button" href="${location.href}/question/${newQuestion._id}" class="reply-button">${newQuestion.comment} phản hồi</a>`;
     // sap xep lai cac cau hoi
     sortQuestions();
 }
@@ -138,4 +138,10 @@ socket.on('moreVoteQuestion', votes => {
     let questions = Array.from(table.children[0].children);
     let voteIndex = questions.findIndex(question => question.id === votes._id);
     handleVoteQuestion(voteIcons[voteIndex], votes);
+});
+
+socket.on('addComment', comment => {
+    let question = document.getElementById(comment.question);
+    let linkCmtBtn = question.querySelector('.reply-button');
+    linkCmtBtn.innerHTML = (Number.parseInt(linkCmtBtn.innerText) + 1) + ' phản hồi';
 });
