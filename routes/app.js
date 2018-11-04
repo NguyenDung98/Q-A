@@ -3,14 +3,27 @@ let questionHelper = require("../helpers/question"),
     router         = require('express').Router();
 
 router.get('/session/:sessionID', async (req, res) => {
-    const session = await sessionHelper.getSessionByID(req.params.sessionID);
-    res.render('askingQuestion', {session})
+    try {
+        const session = await sessionHelper.getSessionByID(req.params.sessionID);
+        if (!session) throw new Error('session not found');
+        res.render('askingQuestion', {session})
+    } catch (error) {
+        console.log(error);
+        res.redirect('/session')
+    }
 });
 
 router.get('/session/:sessionID/question/:questionID', async (req, res) => {
-    const question = await questionHelper.getQuestionByID(req.params.questionID);
-    const session = await sessionHelper.getSessionByID(req.params.sessionID);
-    res.render('answerQuestion', {question, eventName: session.eventName})
+    try {
+        const question = await questionHelper.getQuestionByID(req.params.questionID);
+        const session = await sessionHelper.getSessionByID(req.params.sessionID);
+        if (!session) throw new Error('session not found');
+        if (!question) throw new Error('question not found');
+        res.render('answerQuestion', {question, eventName: session.eventName})
+    } catch (error) {
+        console.log(error);
+        res.redirect('/session')
+    }
 });
 
 router.get('/session', (req, res) => {
