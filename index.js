@@ -19,8 +19,9 @@ app.use(express.static(__dirname + "/views"));
 app.use('/api/question', questionRoute);
 app.use('/api/answer', answerRoute);
 app.use('/api/session', sessionRoute);
-app.use('', appRoute);
 app.use('/api/user', userRoute);
+app.use('', appRoute);
+
 io.on('connection', socket => {
     // kenh cau hoi
     socket.on('addQuestion', question => {
