@@ -7,6 +7,7 @@ let express       = require("express"),
     answerRoute   = require('./routes/comment'),
     sessionRoute  = require('./routes/session'),
     appRoute      = require('./routes/app');
+    userRoute     = require('./routes/user');
 
 // cau hinh express
 app.use(bodyParser.json());
@@ -19,7 +20,7 @@ app.use('/api/question', questionRoute);
 app.use('/api/answer', answerRoute);
 app.use('/api/session', sessionRoute);
 app.use('', appRoute);
-
+app.use('/api/user', userRoute);
 io.on('connection', socket => {
     // kenh cau hoi
     socket.on('addQuestion', question => {

@@ -1,72 +1,101 @@
-var lecturers = ["A", "B"];
-var students = ["a", "b"];
 var cellCurent;
+var list;
+var editing = false;
 var del = function(){
 	var table = this.closest('table');
 	var rowId = this.closest('tr').rowIndex;
 	table.deleteRow(rowId);
-	updateList(table);
+	list.slice(rowId, 1);
 }
 var add = function(){
 	cellCurent = this;
 	openForm();
 }
 var edit = function(){
+	editing = true;
 	cellCurent = this;
 	var value = this.textContent;
 	document.getElementById("input").value = value;
 	openForm();
 }
 
-function updateList(table){
-	var list = [];
-	for(var i = 0; i < table.rows.length-1; i++){
-		list.push(table.rows[i].cells[0].textContent.trim());
-	}
-	if(table.id == 'lecturer-list'){
-		lecturers = list;
-	}else{
-		students = list;
-	}
-	console.log(lecturers, students);
-}
-function updateTable(table, rowId, newValue){
+axios.get(`/api/user/${userID}`)
+    .then(users => users)
+    .then(list = users)
+    .then(users => {
+        drawTable(users)
+    })
+    .catch(error => {
+    	alert(error)
+    });
+
+function updateTable(table, rowId, newUserName){
 	table.rows[rowId].cells[0].innerHTML = "<tr>"+
 			"<div class=\"session\">"+
 			"<div class=\"session-info\">"+
-			`<div class=\"session-name\"><div class=\"name\">${newValue}</div>`+
+			`<div class=\"session-name\"><div class=\"name\">${newUserName}</div>`+
 			`</div>`+
 			"</div>"+
 			"</div>"+
 			"</tr><br>";
 }
-function drawTable(id, list){
-	var table = document.getElementById(id);
+function drawTable(users){
+	var tableLecturer = document.getElementById("lecturer-list");
+	var tableStudent = document.getElementById("student-list");	
 	for(var i = 0; i < list.length; i++){
-		var newRow = table.insertRow(i);
-		var cell = newRow.insertCell(0);
-		newRow.id = i;
-		newRow.classList.add('session');
-		cell.innerHTML = 
-			"<tr>"+
-			"<div class=\"session\">"+
-			"<div class=\"session-info\">"+
-			`<div class=\"session-name\"><div class=\"name\">${list[i]}</div>`+
-			`</div>`+
-			"</div>"+
-			"</div>"+
-			"</tr><br>";
-		cell.onclick = edit;
-		var delCell = newRow.insertCell(1);
-		delCell.innerHTML = "<div id=\"del\"><span id>x</span></div>";
-		delCell.onclick = del;
+		if(list[i].type == "Lecturer"){
+			var newRow = tableLecturer.insertRow(i);
+			var cell = newRow.insertCell(0);
+			newRow.id = i;
+			newRow.classList.add('session');
+			cell.innerHTML = 
+				"<tr>"+
+				"<div class=\"session\">"+
+				"<div class=\"session-info\">"+
+				`<div class=\"session-name\"><div class=\"name\">${list[i].user}</div>`+
+				`</div>`+
+				"</div>"+
+				"</div>"+
+				"</tr><br>";
+			cell.onclick = edit;
+			var delCell = newRow.insertCell(1);
+			delCell.innerHTML = "<div id=\"del\"><span id>x</span></div>";
+			delCell.onclick = del;
+		}else{
+			if(list[i].type == "Student"){
+				var newRow = tableStudent.insertRow(i);
+				var cell = newRow.insertCell(0);
+				newRow.id = i;
+				newRow.classList.add('session');
+				cell.innerHTML = 
+					"<tr>"+
+					"<div class=\"session\">"+
+					"<div class=\"session-info\">"+
+					`<div class=\"session-name\"><div class=\"name\">${list[i].user}</div>`+
+					`</div>`+
+					"</div>"+
+					"</div>"+
+					"</tr><br>";
+				cell.onclick = edit;
+				var delCell = newRow.insertCell(1);
+				delCell.innerHTML = "<div id=\"del\"><span id>x</span></div>";
+				delCell.onclick = del;
+			}
+		}
 	}
-	var addRow = table.insertRow(list.length);
-	var cellAddRow = addRow.insertCell(0);
-	addRow.id = list.length;
-	addRow.classList.add('session');
-	cellAddRow.innerHTML = "<div class=\"session\" id=\"plus\"><button id=\"plus-button\">+</button></div>";
-	cellAddRow.onclick = add;
+	var addRowLecturer = tableLecturer.insertRow(tableLecturer.rows.length);
+	var cellAddRowLecturer = addRowLecturer.insertCell(0);
+	addRowLecturer.id = list.length;
+	addRowLecturer.classList.add('session');
+	cellAddRowLecturer.innerHTML = "<div class=\"session\" id=\"plus\"><button id=\"plus-button\">+</button></div>";
+	cellAddRowLecturer.onclick = add;
+
+	var addRowStudent = tableStudent.insertRow(tableStudent.rows.length);
+	var cellAddRowStudent = addRowStudent.insertCell(0);
+	addRowStudent.id = list.length;
+	addRowStudent.classList.add('session');
+	cellAddRowStudent.innerHTML = "<div class=\"session\" id=\"plus\"><button id=\"plus-button\">+</button></div>";
+	cellAddRowStudent.onclick = add;
 }
 function show(){
 	document.getElementById("session-list-container").style.display = "block";
@@ -86,33 +115,56 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 function saveVal(){
-	var newValue = document.getElementById("input").value;
+	var newUser = document.getElementById("input").value;
+	if(!editing){
+		var u = {
+			user: newUser,
+			type: "Lecturer"?cellCurent.closest('table').id=="lecturer-list":"Student"
+		}
+        axios.post('/api/user/', u)
+            .then(user => user.data)
+            .then(user =>{
+            	addUser(user)
+            })
+            .catch(error => {
+                alert(error);
+            });
+	}
+	else{
+		editing = false;
+		list[cellCurent.rowIndex].user = newUser;
+		axios.put(`/api/user/${userID}`, newUser)
+            .catch(error => {
+                console.log(error);
+            })
+        cellCurent.textContent = newUser;
+	}
+	closeForm();
+}
+function addUser(newUser){
 	var table = cellCurent.closest('table');
 	var rowId = cellCurent.closest('tr').rowIndex;
-	if(newValue.trim().length != 0 && newValue != null){
-		if(rowId == table.rows.length-1){
-			cellCurent.innerHTML = "<tr>"+
-				"<div class=\"session\">"+
-				"<div class=\"session-info\">"+
-				`<div class=\"session-name\"><div class=\"name\">${newValue}</div>`+
-				`</div>`+
-				"</div>"+
-				"</div>"+
-				"</tr><br>";
-			var delCell = table.rows[rowId].insertCell(1);
-			delCell.innerHTML = "<div id=\"del\">x</div>";
-			delCell.onclick = del;
 
-			var addRow = table.insertRow(rowId+1);
-			var cellAddRow = addRow.insertCell(0);
-			addRow.id = rowId+1;
-			addRow.classList.add('session');
-			cellAddRow.innerHTML = "<div class=\"session\" id=\"plus\"><button id = \"plus-button\">+</button></div>";
-			cellAddRow.onclick = add;
-		}
-		updateList(table);
-		updateTable(table, rowId, newValue);
+	if(newUser.trim().length != 0 && newUser != null){
+		cellCurent.innerHTML = "<tr>"+
+			"<div class=\"session\">"+
+			"<div class=\"session-info\">"+
+			`<div class=\"session-name\"><div class=\"name\">${newUser}</div>`+
+			`</div>`+
+			"</div>"+
+			"</div>"+
+			"</tr><br>";
+		var delCell = table.rows[rowId].insertCell(1);
+		delCell.innerHTML = "<div id=\"del\">x</div>";
+		delCell.onclick = del;
+
+		var addRow = table.insertRow(rowId+1);
+		var cellAddRow = addRow.insertCell(0);
+		addRow.id = rowId+1;
+		addRow.classList.add('session');
+		cellAddRow.innerHTML = "<div class=\"session\" id=\"plus\"><button id = \"plus-button\">+</button></div>";
+		cellAddRow.onclick = add;
+
+		list.push(newUser);
 	}
-	
-	closeForm();
 }
