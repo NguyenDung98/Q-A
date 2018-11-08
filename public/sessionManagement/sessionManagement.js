@@ -1,5 +1,4 @@
 
-// ---------------------------------------------- DANH SACH BIEN --------------------------------------------------
 
 var addSessionBtn = document.getElementById("add-session-btn");                      // nut them session
 var addSessionBox = document.getElementById("add-session-box");                      // Hop thoai them session
@@ -13,7 +12,20 @@ var endTime = document.getElementById("end-time");                              
 
 var sessionList = document.getElementById("list");                                   // danh sach cac session hien co
 
-// ------------------------------------ DANH SACH CAC HAM TINH TOAN, CHUAN HOA ----------------------------------------
+let socket = io();
+
+// lấy dữ liệu từ server
+axios.get('/api/session/')
+    .then(sessions => sessions.data)
+    .then(sessions => {
+        // eventList.removeChild(bigLoader);
+        sessions.forEach(session => {
+            adminAddSession(session)
+        })
+    })
+    .catch(error => {
+        console.log(error)
+    });
 
 // chuyen gia tri thang tu dang so sang dang chu
 function parseMonth(value){
@@ -109,64 +121,37 @@ cancelAddSessionBtn.onclick = function(){
 }
 
 // them session
-confirmAddBtn.onclick = function(){
+function adminAddSession(session){
 
-	// kiem tra xem cac o nhap thong tin con trong khong, neu con trong thi dua ra thong bao
-	if (sesssionName.value==""){
-		alert("Tên phiên hỏi đáp vẫn bị bỏ trống");
-	}
-	else if (beginTime.value==""){
-		alert("Thời gian bắt đầu vẫn bị bỏ trống!");
-	}
-	else if (endTime.value==""){
-		alert("Thời gian kết thúc vẫn bị bỏ trống!");
-	}
-	else{
-		// Lay cac gia tri thoi gian cua thoi diem bat dau session
-		var bg = beginTime.value;
-		var db = new Date(bg);
-		var dayb = db.getDate();
-		var monthb = parseMonth(db.getMonth());
-		var hourb = parseHour(db.getHours());
-		var minb = parseMinutes(db.getMinutes());
-		var periodb = setPeriod(db.getHours());
+	let beginTime = new Date(session.beginDate),
+		endTime = new Date(session.endDate);
 
-		// Lay cac gia tri thoi gian cua thoi diem ket thuc session
-		var ed = endTime.value;
-		var de = new Date(ed);
-		var daye = de.getDate();
-		var monthe = parseMonth(de.getMonth());
-		var houre = parseHour(de.getHours());
-		var mine = parseMinutes(de.getMinutes());
-		var periode = setPeriod(de.getHours());
+	//Tao Session moi
+	var newSession = document.createElement("div");
+	newSession.classList.add("w3-bar");
+	newSession.classList.add("w3-hover-light-gray");
+	newSession.classList.add("w3-margin");
+	newSession.innerHTML = "<div class=\"w3-bar-item\">" +
+					 `	<label class=\"w3-small w3-text-gray\" style=\"display: block;\">${beginTime.toLocaleDateString()} ${beginTime.toLocaleTimeString} - ${endTime.toLocaleDateString()} ${endTime.toLocaleTimeString()}</label>` +
+					 `	<label style=\"display: block;\">${session.eventName}</label>` +
+					 "</div>" +
+					 "<button class=\"w3-bar-item w3-right session-option end-session\" onclick=\"endSession(this)\">" + 
+					 "	<i class=\"fa fa-close\" style=\"display: block;\"></i>" +
+					 "	<label style=\"display: block; cursor: pointer;\">Kết thúc</label>" +
+					 "</button>" +
+					 "<button class=\"w3-bar-item w3-right session-option close-session\" onclick=\"closeSession(this)\">" +
+						"<i class=\"fa fa-minus-circle\" style=\"display: block;\"></i>" +
+						"<label style=\"display: block; cursor: pointer;\">Đóng</label>" +
+					 "</button>";
 
-		//Tao Session moi
-		var newSession = document.createElement("div");
-		newSession.classList.add("w3-bar");
-		newSession.classList.add("w3-hover-light-gray");
-		newSession.classList.add("w3-margin");
-		newSession.innerHTML = "<div class=\"w3-bar-item\">" +
-						 "	<label class=\"w3-small w3-text-gray\" style=\"display: block;\">" + dayb + " " + monthb + " " + hourb + ":" + minb + periodb + " - "  + daye + " " + monthe + " " + houre + ":" + mine + periode + "</label>" +
-						 "	<label style=\"display: block;\">" + sesssionName.value + "</label>" +
-						 "</div>" +
-						 "<button class=\"w3-bar-item w3-right session-option end-session\" onclick=\"endSession(this)\">" + 
-						 "	<i class=\"fa fa-close\" style=\"display: block;\"></i>" +
-						 "	<label style=\"display: block; cursor: pointer;\">Kết thúc</label>" +
-						 "</button>" +
-						 "<button class=\"w3-bar-item w3-right session-option close-session\" onclick=\"closeSession(this)\">" +
-							"<i class=\"fa fa-minus-circle\" style=\"display: block;\"></i>" +
-							"<label style=\"display: block; cursor: pointer;\">Đóng</label>" +
-						 "</button>";
+	//Them session vao van ban
+	sessionList.appendChild(newSession);
 
-		//Them session vao van ban
-		sessionList.appendChild(newSession);
+	// reset lai hop thoai them session
+	reset();
 
-		// reset lai hop thoai them session
-		reset();
-
-		// dong hop thoai them session
-		addSessionBox.style.display = "none";
-	}	
+	// dong hop thoai them session
+	addSessionBox.style.display = "none";
 }
 
 function endSession(obj){
