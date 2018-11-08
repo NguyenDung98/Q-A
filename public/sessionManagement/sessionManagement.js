@@ -12,7 +12,7 @@ var endTime = document.getElementById("end-time");                              
 
 var sessionList = document.getElementById("list");                                   // danh sach cac session hien co
 
-let socket = io();
+// let socket = io();
 
 // lấy dữ liệu từ server
 axios.get('/api/session/')
