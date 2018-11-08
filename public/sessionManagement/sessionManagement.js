@@ -1,5 +1,3 @@
-
-
 var addSessionBtn = document.getElementById("add-session-btn");                      // nut them session
 var addSessionBox = document.getElementById("add-session-box");                      // Hop thoai them session
 var closeModalAddSessionBtn = document.getElementById("close-modal-add-session");    // nut dong hop thoai them session
@@ -132,7 +130,7 @@ function adminAddSession(session){
 	newSession.classList.add("w3-hover-light-gray");
 	newSession.classList.add("w3-margin");
 	newSession.innerHTML = "<div class=\"w3-bar-item\">" +
-					 `	<label class=\"w3-small w3-text-gray\" style=\"display: block;\">${beginTime.toLocaleDateString()} ${beginTime.toLocaleTimeString} - ${endTime.toLocaleDateString()} ${endTime.toLocaleTimeString()}</label>` +
+					 `	<label class=\"w3-small w3-text-gray\" style=\"display: block;\">${beginTime.toLocaleDateString()} ${beginTime.toLocaleTimeString()} - ${endTime.toLocaleDateString()} ${endTime.toLocaleTimeString()}</label>` +
 					 `	<label style=\"display: block;\">${session.eventName}</label>` +
 					 "</div>" +
 					 "<button class=\"w3-bar-item w3-right session-option end-session\" onclick=\"endSession(this)\">" + 

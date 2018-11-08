@@ -17,7 +17,10 @@ let sessionSchema = new mongoose.Schema({
         type: Date,
         required: 'End date is required!'
     },
-    // postTime: Date
+    isClosed: {
+        type: Boolean,
+        default: false
+    }
 });
 
 let Session = mongoose.model("Session", sessionSchema);

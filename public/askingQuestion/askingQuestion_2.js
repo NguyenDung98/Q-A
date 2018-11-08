@@ -1,39 +1,3 @@
-// Thêm câu hỏi mới
-function addQuestion(newQuestion) {
-    let replyButton = document.createElement("input");
-    replyButton.type = "button";
-    replyButton.classList.add("reply-button");
-    replyButton.value = "Reply";
-
-    let newRow = table.insertRow(0);
-
-    let cell1 = newRow.insertCell(0);
-    let cell2 = newRow.insertCell(1);
-
-    newRow.data = {
-        postTime: newQuestion.postTime
-    };
-    newRow.id = newQuestion._id;
-    newRow.classList.add('question-block');
-    cell1.innerHTML =
-        "<i class=\"fas fa-caret-up vote-icon\"></i><br>" +
-        `<span class=\"vote-count\">${newQuestion.vote}</span><br>` +
-        "<span>lượt</span>";
-    cell1.classList.add("vote-zone");
-    cell2.innerHTML =
-        `<span class="author">${newQuestion.user}</span><br>` +
-        `<span class="question">${newQuestion.question}</span>`;
-    // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
-    let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự
-    for (let i = 0; i < 3 - breakLines; i++) {
-        cell2.innerHTML += '<br/>';
-    }
-    if (breakLines > 2) cell2.innerHTML += '<br/>';
-    cell2.innerHTML += `<a type="button" href="${location.href}/question/${newQuestion._id}" class="reply-button">${newQuestion.comment} phản hồi</a>`;
-    // sap xep lai cac cau hoi
-    sortQuestions();
-}
-
 function handleVoteQuestion(icon, votes) {
     if (userID === votes.userID && !userMakeVote) {
         icon.classList.toggle('vote-icon-clicked');

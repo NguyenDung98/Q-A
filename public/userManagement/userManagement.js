@@ -6,22 +6,21 @@ var del = function(){
 	var rowId = this.closest('tr').rowIndex;
 	table.deleteRow(rowId);
 	list.slice(rowId, 1);
-}
+};
 var add = function(){
 	cellCurent = this;
 	openForm();
-}
+};
 var edit = function(){
 	editing = true;
 	cellCurent = this;
 	var value = this.textContent;
 	document.getElementById("input").value = value;
 	openForm();
-}
+};
 
-axios.get(`/api/user/${userID}`)
+axios.get(`/api/user/`)
     .then(users => users)
-    .then(list = users)
     .then(users => {
         drawTable(users)
     })

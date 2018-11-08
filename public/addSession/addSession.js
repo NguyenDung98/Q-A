@@ -7,13 +7,10 @@ var eventEnd = document.getElementById("end-time");
 var eventList = document.getElementById("event-list");
 let socket = io();
 
-
 //hộp dropdown
-
-
 function dropclick() {
     var click = document.getElementById("dropContent");
-    if (click.className.indexOf("w3-show") == -1) {
+    if (click.className.indexOf("w3-show") === -1) {
         click.className += " w3-show";
     } else {
         click.className = click.className.replace(" w3-show", "");
@@ -33,6 +30,7 @@ axios.get('/api/session/')
         console.log(error)
     });
 
+
 //hiển thị khi di chuột vào sesion
 function mOver(obj) {
     var l = obj.children[0].children;
@@ -41,9 +39,9 @@ function mOver(obj) {
     l[2].style.opacity = 0.5;
     l[0].children[1].style.visibility = "visible";  //dấu x
     l[0].children[2].style.visibility = "visible";  //dấu đóng mở
-    if (l[0].children[2].getAttribute("id") == "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
+    if (l[0].children[2].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
         l[5].style.visibility = "visible";   //load
-    } else if (l[0].children[2].getAttribute("id") == "inactive") {
+    } else if (l[0].children[2].getAttribute("id") === "inactive") {
         l[5].disabled = true;
     }
 }
@@ -51,9 +49,11 @@ function mOver(obj) {
 //hiển thị khi di chuột ra ngoài sesion
 function mOut(obj) {
     var l = obj.children[0].children;
-    l[0].children[0].style.opacity = 1;
-    l[1].style.opacity = 1;
-    l[2].style.opacity = 1;
+    if (l[0].children[2].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
+        l[0].children[0].style.opacity = 1;
+        l[1].style.opacity = 1;
+        l[2].style.opacity = 1;
+    }
     l[5].style.visibility = "hidden";
     l[0].children[1].style.visibility = "hidden";
     l[0].children[2].style.visibility = "hidden";
@@ -63,7 +63,6 @@ function mOut(obj) {
 function deleteEvent(obj) {
     var r = window.confirm("Bạn chắc chắn xóa phiên hỏi đáp này?");
 }
-
 
 function parseMonth(value) {
     var res = "";
@@ -109,29 +108,8 @@ function parseMonth(value) {
     return res;
 }
 
-function mOver(obj) {
-    var l = obj.children[0].children;
-    l[0].children[0].style.opacity = 0.3;
-    l[1].style.opacity = 0.3;
-    l[2].style.opacity = 0.3;
-    l[5].style.visibility = "visible";
-    l[0].children[1].style.visibility = "visible";
-    l[0].children[2].style.visibility = "visible";
-}
-
-function mOut(obj) {
-    var l = obj.children[0].children;
-    l[0].children[0].style.opacity = 1;
-    l[1].style.opacity = 1;
-    l[2].style.opacity = 1;
-    l[5].style.visibility = "hidden";
-    l[0].children[1].style.visibility = "hidden";
-    l[0].children[2].style.visibility = "hidden";
-}
-
 function deleteEvent(obj) {
     var r = window.confirm("Are you sure to delete this event?");
-
     if (r) {
         obj.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode.parentNode.parentNode);
     }
@@ -146,56 +124,17 @@ function closeNewEventBox() {
 }
 
 window.onclick = function (event) {
-    if (event.target == newEventModal) {
+    if (event.target === newEventModal) {
         newEventModal.style.display = "none";
     }
 };
 
-
 //thêm phiên hỏi đáp
-
 function addSession(newSession) {
-    // if (eventName.value==""){
-    // 	alert("Hãy thêm tên sự kiện");
-    // }
-    // else if(eventPassword.value==""){
-    // 	alert("Hãy thêm mã sự kiện");
-    // }
-    // else if (eventBegin.value==""){
-    // 	alert("Sự kiện chưa có ngày bắt đầu");
-    // }
-    // else if (eventBegin.value==""){
-    // 	alert("Sự kiện chưa có ngày kết thúc");
-    // }
-    // else{
-    // 	// var bg = eventBegin.value;
-    // var db = new Date(bg);
-    // var dayb = db.getDate();
-    // var monthb = parseMonth(db.getMonth());
-    // var yearb = db.getFullYear();
-
-    // var ed = eventEnd.value;
-    // var de = new Date(ed);
-    // var daye = de.getDate();
-    // var monthe = parseMonth(de.getMonth());
-    // var yeare = de.getFullYear();
-
-    // var time = "";
-
-    // if (yearb == yeare){
-    // 	if (monthb == monthe) {
-    // 		time = dayb + " - " + daye + " " + monthb + " " + yearb;
-    // 	}
-    // 	else{
-    // 		time = dayb + " " + monthb + " - " + daye + " " + monthe + " " + yearb;
-    // 	}
-    // }
-    // else{
-    // 	time = dayb + " " + monthb + " " + yearb + " - " + daye + " " + monthe + " " + yeare;
-    // }
-
-
     var newEvent = document.createElement("div");
+    newEvent.data = {
+        id: newSession._id
+    };
     newEvent.classList.add("w3-col");
     newEvent.classList.add("s3");
     let beginDate = new Date(newSession.beginDate),
@@ -214,11 +153,18 @@ function addSession(newSession) {
         `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.eventName}</label>` +
         `	  <label class=\"w3-small\" style=\"display: block; opacity: 0.5;\">${beginDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}</label>` +
         "	  <br><br>" +
-
         `	  <a href='/session/${newSession._id}' type=\"button\" class=\"w3-button w3-block hide w3-teal w3-hover-teal\" style=\"opacity:1.0; visibility:hidden; border-radius:5px\">Load</a>` +
         "  </div>" +
         "</div>";
 
+    if (newSession.isClosed) {
+        let obj = newEvent.querySelector('.fa-minus-circle').parentElement;
+        obj.parentNode.parentNode.classList.add("fade");
+        obj.setAttribute("onclick", "activeSession(this)");
+        obj.setAttribute("id", "inactive");
+        mOver(newEvent.children[0]);
+        mOut(newEvent.children[0]);
+    }
     eventList.insertBefore(newEvent, eventList.childNodes[0]);
     closeNewEventBox();
 
@@ -262,8 +208,10 @@ function getVal() {
 }
 
 //khóa phiên hỏi đáp
-function closeSession(obj) {
-    alert("Phiên hỏi đáp đã được đóng!");
+async function closeSession(obj) {
+    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement;
+    await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: true});
+
     obj.parentNode.parentNode.classList.add("fade");
     obj.setAttribute("onclick", "activeSession(this)");
     obj.setAttribute("id", "inactive");
@@ -272,8 +220,10 @@ function closeSession(obj) {
 }
 
 //kích hoạt phiên hỏi đáp
-function activeSession(obj) {
-    alert("Phiên hỏi đáp đã được kích hoạt!");
+async function activeSession(obj) {
+    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement;
+    await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: false});
+
     obj.parentNode.parentNode.classList.remove("fade");
     obj.setAttribute("onclick", "closeSession(this)");
     obj.setAttribute("id", "active");
@@ -283,22 +233,8 @@ function activeSession(obj) {
     // var eventList = document.getElementById("event-list");
     // eventList.insertBefore(newEvent, eventList.childNodes[0]);
 
-    // eventList.append(bigLoader);
-    // đẩy phiên hỏi đáp mới lên server
-    // axios.post('/api/question/', newSession)
-    //     .then(session => session.data)
-    //     .then(session => {
-    //         // eventList.removeChild(bigLoader);
-    //         socket.emit('addSession', session);
-    //     })
-    //     .catch(error => {
-    //         alert(error);
-    //     });
-
     closeNewEventBox();
-
 }
-
 function getVal() {
     // let user = authorInput.value.trim() ? authorInput.value.trim() : "Ẩn danh";
     let eventName = eventNameInput.value;
@@ -337,7 +273,6 @@ function getVal() {
     // đẩy câu hỏi mới lên server
 
 }
-
 
 // kênh thêm phiên hỏi đáp
 socket.on('addSession', session => {
