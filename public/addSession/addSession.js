@@ -34,12 +34,12 @@ axios.get('/api/session/')
 //hiển thị khi di chuột vào sesion
 function mOver(obj) {
     var l = obj.children[0].children;
-    l[0].children[0].style.opacity = 0.5;
-    l[1].style.opacity = 0.5;
-    l[2].style.opacity = 0.5;
-    l[0].children[1].style.visibility = "visible";  //dấu x
-    l[0].children[2].style.visibility = "visible";  //dấu đóng mở
-    if (l[0].children[2].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
+    l[0].children[0].style.opacity = 0.3;
+    l[1].style.opacity = 0.3;
+    l[2].style.opacity = 0.3;
+    l[0].children[1].children[0].style.visibility = "visible";  //dấu x
+    l[0].children[2].children[0].style.visibility = "visible";  //dấu đóng mở
+    if (l[0].children[2].children[0].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
         l[5].style.visibility = "visible";   //load
     } else if (l[0].children[2].getAttribute("id") === "inactive") {
         l[5].disabled = true;
@@ -49,14 +49,14 @@ function mOver(obj) {
 //hiển thị khi di chuột ra ngoài sesion
 function mOut(obj) {
     var l = obj.children[0].children;
-    if (l[0].children[2].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
+    if (l[0].children[2].children[0].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
         l[0].children[0].style.opacity = 1;
         l[1].style.opacity = 1;
         l[2].style.opacity = 1;
     }
     l[5].style.visibility = "hidden";
-    l[0].children[1].style.visibility = "hidden";
-    l[0].children[2].style.visibility = "hidden";
+    l[0].children[1].children[0].style.visibility = "hidden";
+    l[0].children[2].children[0].style.visibility = "hidden";
 }
 
 //xóa phiên hỏi đáp
@@ -140,15 +140,22 @@ function addSession(newSession) {
     let beginDate = new Date(newSession.beginDate),
         endDate = new Date(newSession.endDate);
 
-    newEvent.innerHTML = "<div class=\"w3-card w3-white w3-round-medium\" style=\"margin: 15px 10px 5px 0; cursor: pointer;\" onmouseover=\"mOver(this)\" onmouseout=\"mOut(this)\">" +
+    newEvent.innerHTML = "<div class=\"w3-card w3-white w3-round-medium\" style=\"margin: 15px 10px 5px 0;\" onmouseover=\"mOver(this)\" onmouseout=\"mOut(this)\">" +
         "  <div class=\"w3-container\" style=\"padding: 5px 10px;\">" +
         "	  <div class=\"w3-bar\">" +
         `		  <label class=\"w3-bar-item w3-large w3-text-teal\" style=\"display: block; padding-left: 0\">${newSession.eventCode}</label>` +
-        "		  <button class=\"w3-bar-item w3-right hide inherit-button w3-button w3-hover-teal\" style=\"cursor: pointer;opacity:1.0\" onclick=\"deleteEvent(this)\">" +
-        "			  <i class=\"fa fa-close\"></i>" +
-        "		  </button>" +
-        "         <button id=\"active\" class=\"w3-bar-item w3-right hide inherit-button w3-button w3-hover-teal\" onclick=\"closeSession(this)\">" +
-        "             <i class=\"fa fa-minus-circle\"></i>" +
+        "		  <div class=\"tooltip w3-bar-item w3-right w3-padding-small\" style='padding: 0 !important'>" +
+        "             <button class=\" hide inherit-button w3-button w3-padding-small\" style=\"cursor: pointer;opacity:1.0\" onclick=\"deleteEvent(this)\">" +
+        "			     <i class=\"fas fa-times\"></i>" +
+        "		      </button> " +
+        "             <span class='tooltiptext'>Xóa phiên</span>" +
+        "          </div>" +
+        "		  <div class=\"tooltip w3-bar-item w3-right w3-padding-small\" style='padding: 0 !important;'>" +
+        "             <button id=\"active\" class=\"hide inherit-button w3-button w3-padding-small\" onclick=\"closeSession(this)\">" +
+        "                <i class=\"fas fa-minus\"></i>" +
+        "		      </button> " +
+        "             <span class='tooltiptext'>Đóng phiên</span>" +
+        "          </div>" +
         "	  </div>" +
         `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.eventName}</label>` +
         `	  <label class=\"w3-small\" style=\"display: block; opacity: 0.5;\">${beginDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}</label>` +
@@ -158,10 +165,13 @@ function addSession(newSession) {
         "</div>";
 
     if (newSession.isClosed) {
-        let obj = newEvent.querySelector('.fa-minus-circle').parentElement;
+        let obj = newEvent.querySelector('.fa-minus').parentElement;
         obj.parentNode.parentNode.classList.add("fade");
         obj.setAttribute("onclick", "activeSession(this)");
         obj.setAttribute("id", "inactive");
+        obj.nextElementSibling.innerText = "Mở phiên";
+        var child = obj.children;
+        child[0].setAttribute("class", "fas fa-check");
         mOver(newEvent.children[0]);
         mOut(newEvent.children[0]);
     }
@@ -209,32 +219,35 @@ function getVal() {
 
 //khóa phiên hỏi đáp
 async function closeSession(obj) {
-    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement;
+    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement.parentElement;
     await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: true});
 
-    obj.parentNode.parentNode.classList.add("fade");
+    obj.parentNode.parentNode.parentNode.classList.add("fade");
     obj.setAttribute("onclick", "activeSession(this)");
     obj.setAttribute("id", "inactive");
+    obj.nextElementSibling.innerText = "Mở phiên";
     var child = obj.children;
-    child[0].setAttribute("class", "fa fa-check-circle");
+    child[0].setAttribute("class", "fas fa-check");
 }
 
 //kích hoạt phiên hỏi đáp
 async function activeSession(obj) {
-    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement;
+    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement.parentElement;
     await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: false});
 
-    obj.parentNode.parentNode.classList.remove("fade");
+    obj.parentNode.parentNode.parentNode.classList.remove("fade");
     obj.setAttribute("onclick", "closeSession(this)");
     obj.setAttribute("id", "active");
+    obj.nextElementSibling.innerText = "Đóng phiên";
     var child = obj.children;
-    child[0].setAttribute("class", "fa fa-minus-circle");
+    child[0].setAttribute("class", "fas fa-minus");
 
     // var eventList = document.getElementById("event-list");
     // eventList.insertBefore(newEvent, eventList.childNodes[0]);
 
     closeNewEventBox();
 }
+
 function getVal() {
     // let user = authorInput.value.trim() ? authorInput.value.trim() : "Ẩn danh";
     let eventName = eventNameInput.value;
