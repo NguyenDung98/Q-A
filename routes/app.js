@@ -19,6 +19,7 @@ router.get('/session/:sessionID/question/:questionID', async (req, res) => {
         const session = await sessionHelper.getSessionByID(req.params.sessionID);
         if (!session) throw new Error('session not found');
         if (!question) throw new Error('question not found');
+        if (question.session.toString() !== session._id.toString()) throw Error("This question is not in this session!");
         res.render('answerQuestion', {question, eventName: session.eventName})
     } catch (error) {
         console.log(error);
@@ -37,7 +38,5 @@ router.get('/admin/user', (req, res) => {
 router.get('/admin/session', (req, res) => {
     res.render('sessionManagement')
 });
-
-
 
 module.exports = router;

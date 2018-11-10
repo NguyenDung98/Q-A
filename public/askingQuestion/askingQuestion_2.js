@@ -94,7 +94,9 @@ function compare(val_1, val_2) {
 
 // kênh thêm câu hỏi
 socket.on('addQuestion', question => {
-    addQuestion(question)
+    if (sessionID === question.session) {
+        addQuestion(question);
+    }
 });
 
 // kênh thêm vote cho câu hỏi
