@@ -15,6 +15,7 @@ let socket = io();
 // loader
 let loader = document.createElement('div');
 let bigLoader = loader.cloneNode(true);
+
 loader.classList.add('loader');
 
 bigLoader.classList.add('loader-container');
@@ -37,6 +38,14 @@ axios.get(`/api/question/${sessionID}`)
         console.log(error)
     });
 
+// sửa lại url khi tải lại trang
+window.onkeydown = (e) => {
+    if (e.which === 116) {
+        e.preventDefault();
+        location.href = url;
+    }
+};
+
 function getVal() {
     if (questionInput.value.trim() === "") {
         questionInput.style.border = "1px solid red";
@@ -47,7 +56,8 @@ function getVal() {
             user,
             question: questionInput.value,
             postTime: new Date(),
-            session: sessionID
+            session: sessionID,
+            order: table.rows.length + 1
         };
         inputBox.append(bigLoader);
         // đẩy câu hỏi mới lên server
@@ -116,7 +126,12 @@ function addQuestion(newQuestion) {
         cell2.innerHTML += '<br/>';
     }
     if (breakLines > 2) cell2.innerHTML += '<br/>';
-    cell2.innerHTML += `<a type="button" href="${location.href}/question/${newQuestion._id}" class="reply-button">${newQuestion.comment} phản hồi</a>`;
+    cell2.innerHTML += `<a type="button" onclick="gotoAnswerPage('${newQuestion._id}', '${newQuestion.order}')" class="reply-button">${newQuestion.comment} phản hồi</a>`;
     // sap xep lai cac cau hoi
     sortQuestions();
+}
+
+function gotoAnswerPage(questionID, questionOrder) {
+    window.history.replaceState({}, document.title, url);
+    location.href = clean_uri + `/question/${questionOrder}${query}&question=${questionID}`;
 }

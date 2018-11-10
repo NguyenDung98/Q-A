@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript">
+        let url = window.location.toString();
+        let clean_uri = url.substring(0, url.indexOf("?"));
+        window.history.replaceState({}, document.title, clean_uri);
+        let query = url.substr(url.indexOf('?'));
+    </script>
     <title>Asking Question</title>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet">

@@ -21,7 +21,8 @@ let questionSchema = new mongoose.Schema({
     session: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Session'
-    }
+    },
+    order: Number
 });
 
 let Question = mongoose.model("Question", questionSchema);

@@ -49,6 +49,14 @@ function add_Cmt() {
     commentInput.value = "";
 }
 
+// sửa lại url khi tải lại trang
+window.onkeydown = (e) => {
+    if (e.which === 116) {
+        e.preventDefault();
+        location.href = url;
+    }
+};
+
 // đẩy comment vào DOM
 function addCommentToDOM(commentData) {
     var comment = document.createElement('div');
@@ -155,7 +163,9 @@ function updateVoteToServer(voteData) {
 
 // kênh thêm comment
 socket.on('addComment', comment => {
-    addCommentToDOM(comment)
+    if (comment.question === questionID) {
+        addCommentToDOM(comment)
+    }
 });
 // kênh thêm vote
 socket.on('moreVoteComment', voteData => {
