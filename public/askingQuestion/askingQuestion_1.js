@@ -5,7 +5,7 @@ let inputBox = document.getElementById('form-input'),
     cancelButton = document.getElementById("cancel-button"),
     table = document.getElementsByTagName('table')[0],
     voteIcons = document.getElementsByClassName('vote-icon'),
-    userIdentify = document.querySelector('#user-id span'),
+    userIdentity = document.querySelector('#user-id span'),
     sessionID = document.getElementsByTagName('body')[0].id;
 
 // local variables
@@ -22,7 +22,7 @@ bigLoader.classList.add('loader-container');
 bigLoader.innerHTML += '<div></div>';
 bigLoader.firstElementChild.classList.add('loader', 'big-loader');
 
-userIdentify.innerText += userID;
+userIdentity.innerText += userID;
 inputBox.append(bigLoader);
 
 // lấy dữ liệu từ server
