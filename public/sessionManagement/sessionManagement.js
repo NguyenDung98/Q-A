@@ -159,7 +159,10 @@ function endSession(obj){
 	}
 }
 
-function closeSession(obj){
+async function closeSession(obj){
+	let parentContainData = obj.parentElement.parentElement;
+    await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: true});
+
 	alert("Phiên hỏi đáp đã được đóng!");
 	obj.parentNode.classList.add("fade");
 	obj.setAttribute("onclick","activeSession(this)");
@@ -168,7 +171,10 @@ function closeSession(obj){
 	child[1].innerHTML = "Kích hoạt";
 }
 
-function activeSession(obj){
+async function activeSession(obj){
+	let parentContainData = obj.parentElement.parentElement;
+    await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: false});
+
 	alert("Phiên hỏi đáp đã được kích hoạt!");
 	obj.parentNode.classList.remove("fade");
 	obj.setAttribute("onclick","closeSession(this)");
