@@ -61,6 +61,10 @@ window.onkeydown = (e) => {
 function addCommentToDOM(commentData) {
     var comment = document.createElement('div');
     date =  new Date(commentData.postTime);
+
+    comment.data = {
+        postTime: commentData.postTime
+    };
     comment.classList.add('comment');
     comment.id = commentData._id; // thêm id cho mỗi comment
     comment.innerHTML =
@@ -127,15 +131,45 @@ function handleVoteComment(voteButton, affectedButton, voteData) {
 // Hàm sắp xếp lại thứ tự ưu tiên các phản hồi
 function sortComments() {
     let commentsArray = Array.from(comments);
+    let upVoteSelector = '.vote-area .upVote-count',
+        downVoteSelector = '.vote-area .downVote-count';
+    // sắp xếp dựa trên số phiếu cho mỗi phản hồi
     commentsArray.sort((a, b) => {
-        let upVoteSelector = '.vote-area .upVote-count',
-            downVoteSelector = '.vote-area .downVote-count';
         let orderOfA = Number(a.querySelector(upVoteSelector).innerText) - Number(a.querySelector(downVoteSelector).innerText),
             orderOfB = Number(b.querySelector(upVoteSelector).innerText) - Number(b.querySelector(downVoteSelector).innerText);
-        return orderOfA < orderOfB;
+        return compare(orderOfB, orderOfA);
     });
+    // nhóm các phản hồi cùng số vote
+    commentsArray = commentsArray.reduce((accumulator, currentValue) => {
+        let currentArray = accumulator[accumulator.length - 1];
+        if (accumulator.length === 0) {
+            accumulator.push([]);
+            accumulator[accumulator.length - 1].push(currentValue);
+        } else {
+            const currentItemVote = Number(currentValue.querySelector(upVoteSelector).innerText) - Number(currentValue.querySelector(downVoteSelector).innerText),
+                previousItemVote = Number(currentArray[currentArray.length - 1].querySelector(upVoteSelector).innerText) - Number(currentArray[currentArray.length - 1].querySelector(downVoteSelector).innerText);
+            if (currentItemVote !== previousItemVote) {
+                accumulator.push([]);
+                accumulator[accumulator.length - 1].push(currentValue);
+            } else {
+                currentArray.push(currentValue);
+            }
+        }
+        return accumulator;
+    }, []);
+    // sắp xếp nhóm các câu hỏi theo thòi gian được đăng lên
+    commentsArray = commentsArray.map(sameVoteComments => sameVoteComments.sort((a, b) => {
+        const postTime_a = a.data.postTime,
+            postTime_b = b.data.postTime;
+        return compare(postTime_b, postTime_a);
+    }));
+    commentsArray = commentsArray.reduce((accumulator, currentValue) => {
+        accumulator.push(...currentValue);
+        return accumulator;
+    }, []);
     for (let i = 0; i < comments.length; i++) {
         comments[i].outerHTML = commentsArray[i].outerHTML;
+        comments[i].data = commentsArray[i].data;
         // thêm sự kiện cho các vote button
         addEventToButton(upVoteBtns[i], 'upVote');
         addEventToButton(downVoteBtns[i], 'downVote');
@@ -159,6 +193,16 @@ function updateVoteToServer(voteData) {
     }
     // đẩy dữ liệu qua kênh 'moreVoteComment'
     socket.emit('moreVoteComment', voteData)
+}
+
+// hàm so sánh
+function compare(val_1, val_2) {
+    if (val_1 < val_2) {
+        return -1;
+    } else if (val_1 > val_2) {
+        return 1;
+    }
+    return 0;
 }
 
 // kênh thêm comment

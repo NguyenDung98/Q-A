@@ -228,6 +228,8 @@ async function closeSession(obj) {
     obj.nextElementSibling.innerText = "Mở phiên";
     var child = obj.children;
     child[0].setAttribute("class", "fas fa-check");
+    mOver(parentContainData.children[0]);
+    mOut(parentContainData.children[0]);
 }
 
 //kích hoạt phiên hỏi đáp
@@ -242,8 +244,8 @@ async function activeSession(obj) {
     var child = obj.children;
     child[0].setAttribute("class", "fas fa-minus");
 
-    // var eventList = document.getElementById("event-list");
-    // eventList.insertBefore(newEvent, eventList.childNodes[0]);
+    mOver(parentContainData.children[0]);
+    mOut(parentContainData.children[0]);
 
     closeNewEventBox();
 }
@@ -282,9 +284,6 @@ function getVal() {
                 alert(error);
             });
     }
-    // inputBox.append(bigLoader);
-    // đẩy câu hỏi mới lên server
-
 }
 
 // kênh thêm phiên hỏi đáp
