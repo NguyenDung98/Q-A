@@ -58,12 +58,6 @@ i.fas {
 	border-bottom: 1px dotted black;
 }
 
-.tooltip {
-	position: relative;
-	display: inline-block;
-	border-bottom: 1px dotted black;
-}
-
 .tooltip .tooltiptext {
 	visibility: hidden;
 	width: 70px;

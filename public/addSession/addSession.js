@@ -132,9 +132,7 @@ window.onclick = function (event) {
 //thêm phiên hỏi đáp
 function addSession(newSession) {
     var newEvent = document.createElement("div");
-    newEvent.data = {
-        id: newSession._id
-    };
+    newEvent.id = newSession._id;
     newEvent.classList.add("w3-col");
     newEvent.classList.add("s3");
     let beginDate = new Date(newSession.beginDate),
@@ -166,14 +164,7 @@ function addSession(newSession) {
 
     if (newSession.isClosed) {
         let obj = newEvent.querySelector('.fa-minus').parentElement;
-        obj.parentNode.parentNode.classList.add("fade");
-        obj.setAttribute("onclick", "activeSession(this)");
-        obj.setAttribute("id", "inactive");
-        obj.nextElementSibling.innerText = "Mở phiên";
-        var child = obj.children;
-        child[0].setAttribute("class", "fas fa-check");
-        mOver(newEvent.children[0]);
-        mOut(newEvent.children[0]);
+        closeDOMSession(obj);
     }
     eventList.insertBefore(newEvent, eventList.childNodes[0]);
     closeNewEventBox();
@@ -220,8 +211,13 @@ function getVal() {
 //khóa phiên hỏi đáp
 async function closeSession(obj) {
     let parentContainData = obj.parentElement.parentElement.parentElement.parentElement.parentElement;
-    await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: true});
+    const updatedSession = await axios.put(`/api/session/${parentContainData.id}`, {isClosed: true});
+    socket.emit('updateSession', updatedSession.data);
+}
 
+// đóng phiên hỏi đáp (DOM)
+function closeDOMSession(obj) {
+    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement.parentElement;
     obj.parentNode.parentNode.parentNode.classList.add("fade");
     obj.setAttribute("onclick", "activeSession(this)");
     obj.setAttribute("id", "inactive");
@@ -235,8 +231,15 @@ async function closeSession(obj) {
 //kích hoạt phiên hỏi đáp
 async function activeSession(obj) {
     let parentContainData = obj.parentElement.parentElement.parentElement.parentElement.parentElement;
-    await axios.put(`/api/session/${parentContainData.data.id}`, {isClosed: false});
+    const updatedSession = await axios.put(`/api/session/${parentContainData.id}`, {isClosed: false});
+    socket.emit('updateSession', updatedSession.data);
 
+    closeNewEventBox();
+}
+
+// kích hoạt phiên hỏi đáp (DOM)
+function activateDOMSession(obj) {
+    let parentContainData = obj.parentElement.parentElement.parentElement.parentElement.parentElement;
     obj.parentNode.parentNode.parentNode.classList.remove("fade");
     obj.setAttribute("onclick", "closeSession(this)");
     obj.setAttribute("id", "active");
@@ -246,8 +249,6 @@ async function activeSession(obj) {
 
     mOver(parentContainData.children[0]);
     mOut(parentContainData.children[0]);
-
-    closeNewEventBox();
 }
 
 function getVal() {
@@ -289,4 +290,15 @@ function getVal() {
 // kênh thêm phiên hỏi đáp
 socket.on('addSession', session => {
     addSession(session)
+});
+
+// kênh cập nhật phiên hỏi đáp
+socket.on('updateSession', session => {
+    let updatedElement = document.getElementById(session._id);
+    let obj = updatedElement.querySelectorAll('.fas')[1].parentElement;
+    if (session.isClosed) {
+        closeDOMSession(obj);
+    } else {
+        activateDOMSession(obj);
+    }
 });

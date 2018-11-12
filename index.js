@@ -37,9 +37,12 @@ io.on('connection', socket => {
     socket.on('moreVoteComment', vote => {
         io.emit('moreVoteComment', vote);
     });
-    // kenh them session
+    // kenh session
     socket.on('addSession', session => {
         io.emit('addSession', session)
+    });
+    socket.on('updateSession', session => {
+        io.emit('updateSession', session)
     })
 });
 
