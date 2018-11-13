@@ -21,6 +21,12 @@ button:focus, input:focus, textarea:focus {
 	margin-left: 47%;
 }
 
+#error{
+	color: red;
+	display: none;
+	margin-left: 39%;
+}
+
 #login-button{
 	background-color: #325386d1;
     cursor: pointer;

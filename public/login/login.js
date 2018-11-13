@@ -13,5 +13,8 @@ function loginClick(){
 		if(username.value == "admin" && password.value == "admin"){
    			window.location.href = "http://localhost:3000/session";
 		}
+		else{
+			document.getElementById("error").style.display = "block";
+		}
 	}
 }
