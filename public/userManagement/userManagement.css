@@ -35,24 +35,63 @@ body{
 }
 
 #session-list-container{
-	/*background-color: white;
-	height: 60%;
-	margin-bottom: 30px;
-	padding: 20px;
-	overflow: auto;
-	z-index: 1;
-	position: relative;*/
-	/*display: inline-block;*/
-	flex-direction: row;
-	border-radius: 5px;
-	padding-top: 20px;
 }
 
-#lecturer-list{
+table{
 	width: 100%;
-	margin-right: auto;
-	margin-left: auto;
-	display: inline-block;
+	padding: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid #c2c2c3;
+}
+
+/*th {*/
+	/*border-top: 1px solid;*/
+	/*border-bottom: 1px solid;*/
+/*}*/
+
+/*td {*/
+	/*border-bottom: 1px solid;*/
+/*}*/
+
+td, th {
+	text-align: left;
+	padding: 5px;
+}
+
+.delete-btn, .edit-btn {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	float: right;
+	padding: 0;
+}
+
+.delete-btn {
+	margin-left: 5px;
+}
+
+.edit-btn i, .delete-btn i {
+	font-size: 20px;
+}
+
+.fa-trash-alt {
+	color: #de3438;
+}
+
+.fa-check {
+	color: #00b200;
+}
+
+.fa-edit {
+	color: #e49500;
+}
+
+.focus {
+	background-color: #caefff !important;
 }
 
 #plus-button{
@@ -67,8 +106,12 @@ body{
 	margin-bottom: 5px;
 }
 
+#user-list {
+	background-color: white;
+}
+
 table tr:nth-child(even){
-	background-color: #cdd2d8;
+	background-color: #f3f3f4;
 }
 
 #student-list{
@@ -76,11 +119,6 @@ table tr:nth-child(even){
 	margin-right: auto;
 	margin-left: auto;
 	display: inline-block;
-}
-
-table td {
-   border: 1px solid #aaa;
-   border-radius: 4px;
 }
 
 .tb1Name{

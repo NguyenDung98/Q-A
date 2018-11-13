@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/userManagement/userManagement.css">
 </head>
 <body style="background-color: #f3f3f4;">
@@ -19,33 +20,21 @@
         </form>
     </div>
     <div id="session-list-container">
-        <div class="tb1Name" style="border: 2px solid #aaa;"><b>Giảng viên</b>
-            <table id="lecturer-list">
-                <!-- <tr>
-                    <div class="session">
-                        <div class="icon-session"></div>
-                        <div class="session-info">
-                            <div class="session-name">Lecturer 1</div>
-                        </div>
-                    </div>
-                </tr><br> -->
-            </table>
-        </div>
-        <!-- <br>
-        <br> -->
-        <div class="tb2Name" style="border: 2px solid #aaa;"><b>Sinh viên</b>
-            <table id="student-list">
-                <!-- <tr>
-                    <div class="session">
-                        <div class="icon-session"></div>
-                        <div class="session-info">
-                            <div class="session-name">Student 1</div>
-                        </div>
-                    </div>
-                </tr><br> -->
-            </table>
-            <!-- <img src="add.png" id="plus" onclick="add()"> -->
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <th style="width: 25%">Tên người dùng hiển thị</th>
+                <th style="width: 20%">Tên đăng nhập</th>
+                <th style="width: 20%">Mật khẩu</th>
+                <th>Vai trò</th>
+            </tr>
+            </thead>
+            <tbody id="user-list">
+            </tbody>
+        </table>
+        <div class="session" id="plus"><button id = "plus-button" onclick="add()">+</button></div>
+        <!--<table id="student-list">-->
+        <!--</table>-->
     </div>
 </div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -6,9 +6,7 @@ router.route('/')
 	.post(helper.createUser);
 
 router.route('/:userID')
-	.put(helper.updateUser);
-
-router.route('/del/:userID')
-    .put(helper.deleteUser);
+	.put(helper.updateUser)
+	.delete(helper.deleteUser);
 
 module.exports = router;

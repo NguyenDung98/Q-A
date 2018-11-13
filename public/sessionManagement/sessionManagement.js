@@ -175,7 +175,8 @@ async function closeSession(obj) {
 }
 
 function closeSessionDOM(obj) {
-    // obj.parentNode.classList.add("fade");
+    console.log(obj);
+    obj.parentElement.parentElement.children[0].classList.add('fade');
     obj.setAttribute("onclick", "activeSession(this)");
     var child = obj.children;
     child[0].setAttribute("class", "fas fa-check");
@@ -189,7 +190,7 @@ async function activeSession(obj) {
 }
 
 function activateSessionDOM(obj) {
-    // obj.parentNode.classList.remove("fade");
+    obj.parentElement.parentElement.children[0].classList.remove('fade');
     obj.setAttribute("onclick", "closeSession(this)");
     var child = obj.children;
     child[0].setAttribute("class", "fas fa-minus");
