@@ -2,10 +2,10 @@ let questionHelper = require("../helpers/question"),
     sessionHelper  = require('../helpers/session'),
     router         = require('express').Router();
 
-router.get('/session/:sessionID', async (req, res) => {
+router.get('/session/:eventCode', async (req, res) => {
     try {
-        const session = await sessionHelper.getSessionByID(req.params.sessionID);
-        if (!session) throw new Error('session not found');
+        const session = await sessionHelper.getSessionByID(req.query.id);
+        if (!session || session.eventCode !== req.params.eventCode) throw new Error('session not found');
         res.render('askingQuestion', {session})
     } catch (error) {
         console.log(error);
@@ -13,12 +13,13 @@ router.get('/session/:sessionID', async (req, res) => {
     }
 });
 
-router.get('/session/:sessionID/question/:questionID', async (req, res) => {
+router.get('/session/:eventCode/question/:order', async (req, res) => {
     try {
-        const question = await questionHelper.getQuestionByID(req.params.questionID);
-        const session = await sessionHelper.getSessionByID(req.params.sessionID);
+        const session = await sessionHelper.getSessionByID(req.query.id);
+        const question = await questionHelper.getQuestionByID(req.query.question);
         if (!session) throw new Error('session not found');
         if (!question) throw new Error('question not found');
+        if (question.session.toString() !== session._id.toString()) throw Error("This question is not in this session!");
         res.render('answerQuestion', {question, eventName: session.eventName})
     } catch (error) {
         console.log(error);
@@ -37,7 +38,5 @@ router.get('/admin/user', (req, res) => {
 router.get('/admin/session', (req, res) => {
     res.render('sessionManagement')
 });
-
-
 
 module.exports = router;

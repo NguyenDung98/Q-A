@@ -19,8 +19,9 @@ app.use(express.static(__dirname + "/views"));
 app.use('/api/question', questionRoute);
 app.use('/api/answer', answerRoute);
 app.use('/api/session', sessionRoute);
-app.use('', appRoute);
 app.use('/api/user', userRoute);
+app.use('', appRoute);
+
 io.on('connection', socket => {
     // kenh cau hoi
     socket.on('addQuestion', question => {
@@ -36,9 +37,12 @@ io.on('connection', socket => {
     socket.on('moreVoteComment', vote => {
         io.emit('moreVoteComment', vote);
     });
-    // kenh them session
+    // kenh session
     socket.on('addSession', session => {
         io.emit('addSession', session)
+    });
+    socket.on('updateSession', session => {
+        io.emit('updateSession', session)
     })
 });
 

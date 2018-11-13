@@ -14,10 +14,78 @@
 	background-color: inherit;
 }
 
-.session{
-	cursor: pointer;
-}
-
 .fade{
 	opacity: 0.5;
 }
+
+.w3-bar {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+	visibility: hidden;
+}
+
+.session:hover .tooltip {
+	visibility: visible;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 70px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	font-size: 12px;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 85%;
+	left: 85%;
+	margin-left: -60px;
+	opacity: 0.8;
+}
+
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border: 5px solid transparent;
+	border-top-color: black;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.tooltip .w3-button:hover {
+	background-color: inherit !important;
+}
+
+.w3-bar {
+	overflow: visible !important;
+}
+
+.fa-check {
+	color: #00b200;
+}
+
+.fa-minus {
+	color: #e49500;
+}
+
+.fa-times {
+	color: #de3438;
+}
+
+i.fas {
+	font-size: 25px;
+}
+

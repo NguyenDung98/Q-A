@@ -27,14 +27,14 @@ module.exports = {
             .catch(error => {
                 console.log(error);
             })
+    },
+    updateSession(req, res) {
+        db.Session.findByIdAndUpdate(req.params.sessionID, req.body, {new: true})
+            .then(session => {
+                res.json(session)
+            })
+            .catch(error => {
+                res.send(error)
+            })
     }
-    // updateQuestion(req, res) {
-    //     db.Question.findByIdAndUpdate(req.params.questionID, req.body, {new: true})
-    //         .then(updatedQuestion => {
-    //             res.json(updatedQuestion)
-    //         })
-    //         .catch(error => {
-    //             res.sendFile(error)
-    //         })
-    // }
 };

@@ -5,7 +5,7 @@ let inputBox = document.getElementById('form-input'),
     cancelButton = document.getElementById("cancel-button"),
     table = document.getElementsByTagName('table')[0],
     voteIcons = document.getElementsByClassName('vote-icon'),
-    userIdentify = document.querySelector('#user-id span'),
+    userIdentity = document.querySelector('#user-id span'),
     sessionID = document.getElementsByTagName('body')[0].id;
 
 // local variables
@@ -15,13 +15,14 @@ let socket = io();
 // loader
 let loader = document.createElement('div');
 let bigLoader = loader.cloneNode(true);
+
 loader.classList.add('loader');
 
 bigLoader.classList.add('loader-container');
 bigLoader.innerHTML += '<div></div>';
 bigLoader.firstElementChild.classList.add('loader', 'big-loader');
 
-userIdentify.innerText += userID;
+userIdentity.innerText += userID;
 inputBox.append(bigLoader);
 
 // lấy dữ liệu từ server
@@ -37,6 +38,14 @@ axios.get(`/api/question/${sessionID}`)
         console.log(error)
     });
 
+// sửa lại url khi tải lại trang
+window.onkeydown = (e) => {
+    if (e.which === 116) {
+        e.preventDefault();
+        location.href = url;
+    }
+};
+
 function getVal() {
     if (questionInput.value.trim() === "") {
         questionInput.style.border = "1px solid red";
@@ -47,7 +56,8 @@ function getVal() {
             user,
             question: questionInput.value,
             postTime: new Date(),
-            session: sessionID
+            session: sessionID,
+            order: table.rows.length + 1
         };
         inputBox.append(bigLoader);
         // đẩy câu hỏi mới lên server
@@ -83,4 +93,45 @@ function cancelAddQuestion() {
     authorInput.style.display = "none";
     doneButton.style.display = "none";
     cancelButton.style.display = "none";
+}
+
+// Thêm câu hỏi mới
+function addQuestion(newQuestion) {
+    let replyButton = document.createElement("input");
+    replyButton.type = "button";
+    replyButton.classList.add("reply-button");
+    replyButton.value = "Reply";
+
+    let newRow = table.insertRow(0);
+
+    let cell1 = newRow.insertCell(0);
+    let cell2 = newRow.insertCell(1);
+
+    newRow.data = {
+        postTime: newQuestion.postTime
+    };
+    newRow.id = newQuestion._id;
+    newRow.classList.add('question-block');
+    cell1.innerHTML =
+        "<i class=\"fas fa-caret-up vote-icon\"></i><br>" +
+        `<span class=\"vote-count\">${newQuestion.vote}</span><br>` +
+        "<span>lượt</span>";
+    cell1.classList.add("vote-zone");
+    cell2.innerHTML =
+        `<span class="author">${newQuestion.user}</span><br>` +
+        `<span class="question">${newQuestion.question}</span>`;
+    // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
+    let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự
+    for (let i = 0; i < 3 - breakLines; i++) {
+        cell2.innerHTML += '<br/>';
+    }
+    if (breakLines > 2) cell2.innerHTML += '<br/>';
+    cell2.innerHTML += `<a type="button" onclick="gotoAnswerPage('${newQuestion._id}', '${newQuestion.order}')" class="reply-button">${newQuestion.comment} phản hồi</a>`;
+    // sap xep lai cac cau hoi
+    sortQuestions();
+}
+
+function gotoAnswerPage(questionID, questionOrder) {
+    window.history.replaceState({}, document.title, url);
+    location.href = clean_uri + `/question/${questionOrder}${query}&question=${questionID}`;
 }

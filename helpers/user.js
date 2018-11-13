@@ -7,7 +7,7 @@ module.exports = {
 				res.json(user)
 			})
 			.catch(error => {
-				res(send(error))
+				res.send(error);
 			})
 	},
 	getAllUser(req, res){
@@ -27,5 +27,14 @@ module.exports = {
 			.catch(error => {
 				res.send(error)
 			})
-	}
+	},
+    deleteUser(req, res){
+        db.User.findByIdAndDelete(req.params.userID)
+            .then(deleteUser => {
+                res.json(deleteUser)
+            })
+            .catch(error => [
+                res.send(error)
+            ])
+    }
 };
