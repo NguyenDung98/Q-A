@@ -36,7 +36,7 @@ function mOver(obj) {
     var l = obj.children[0].children;
     l[0].children[0].style.opacity = 0.3;
     l[1].style.opacity = 0.3;
-    l[2].style.opacity = 0.3;
+    // l[2].style.opacity = 0.3;
     l[0].children[1].children[0].style.visibility = "visible";  //dấu x
     l[0].children[2].children[0].style.visibility = "visible";  //dấu đóng mở
     if (l[0].children[2].children[0].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
@@ -52,16 +52,11 @@ function mOut(obj) {
     if (l[0].children[2].children[0].getAttribute("id") === "active") {    //kiểm tra điều kiện để khi đóng session không hiện nút load nữa
         l[0].children[0].style.opacity = 1;
         l[1].style.opacity = 1;
-        l[2].style.opacity = 1;
+        // l[2].style.opacity = 1;
     }
     l[5].style.visibility = "hidden";
     l[0].children[1].children[0].style.visibility = "hidden";
     l[0].children[2].children[0].style.visibility = "hidden";
-}
-
-//xóa phiên hỏi đáp
-function deleteEvent(obj) {
-    var r = window.confirm("Bạn chắc chắn xóa phiên hỏi đáp này?");
 }
 
 function parseMonth(value) {
@@ -109,9 +104,16 @@ function parseMonth(value) {
 }
 
 function deleteEvent(obj) {
-    var r = window.confirm("Are you sure to delete this event?");
-    if (r) {
-        obj.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode.parentNode.parentNode);
+    var confirmed = window.confirm("Are you sure to delete this event?");
+    if (confirmed) {
+        let sessionID = obj.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+        axios.delete(`/api/session/${sessionID}`)
+            .then(() => {
+                socket.emit('deleteSession', sessionID)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 }
 
@@ -301,4 +303,10 @@ socket.on('updateSession', session => {
     } else {
         activateDOMSession(obj);
     }
+});
+
+// kênh xóa phiên hỏi đáp
+socket.on('deleteSession', sessionID => {
+    let deletedSession = document.getElementById(sessionID);
+    deletedSession.remove();
 });

@@ -162,9 +162,16 @@ function adminAddSession(session) {
 }
 
 function endSession(obj) {
-    var r = window.confirm("Bạn có chắc muốn kết thúc phiên hỏi đáp này?");
-    if (r) {
-        obj.parentNode.parentNode.removeChild(obj.parentNode);
+    var confirmed = window.confirm("Bạn có chắc muốn kết thúc phiên hỏi đáp này?");
+    if (confirmed) {
+        let sessionID = obj.parentElement.parentElement.id;
+        axios.delete(`/api/session/${sessionID}`)
+            .then(() => {
+                socket.emit('deleteSession', sessionID);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 }
 
@@ -175,7 +182,6 @@ async function closeSession(obj) {
 }
 
 function closeSessionDOM(obj) {
-    console.log(obj);
     obj.parentElement.parentElement.children[0].classList.add('fade');
     obj.setAttribute("onclick", "activeSession(this)");
     var child = obj.children;
@@ -197,6 +203,11 @@ function activateSessionDOM(obj) {
     obj.nextElementSibling.innerHTML = "Đóng";
 }
 
+// kênh thêm phiên hỏi đáp
+socket.on('addSession', session => {
+    adminAddSession(session);
+});
+
 // kênh cập nhật phiên hỏi đáp
 socket.on('updateSession', session => {
     let updatedElement = document.getElementById(session._id);
@@ -206,4 +217,10 @@ socket.on('updateSession', session => {
     } else {
         activateSessionDOM(obj);
     }
+});
+
+// kênh xóa phiên hỏi đáp
+socket.on('deleteSession', sessionID => {
+    let deletedSession = document.getElementById(sessionID);
+    deletedSession.remove();
 });

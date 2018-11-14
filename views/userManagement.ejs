@@ -9,16 +9,16 @@
 <div id="header" style="color: #ffdb4f;background-color: #325386d1;"><h1 id="even-name">Quản lý người dùng</h1></div>
 <br>
 <div id="container">
-    <div class="form-popup" id="myForm">
-        <form class="form-container">
+    <!--<div class="form-popup" id="myForm">-->
+        <!--<form class="form-container">-->
 
-            <label for="name"><b>Tên</b></label>
-            <input type="text" value="" name="name" id="input" required>
+            <!--<label for="name"><b>Tên</b></label>-->
+            <!--<input type="text" value="" name="name" id="input" required>-->
 
-            <input type="button" class="btn save" onclick="saveVal()" value="Lưu">
-            <input type="button" class="btn cancel" onclick="closeForm()" value="Hủy">
-        </form>
-    </div>
+            <!--<input type="button" class="btn save" onclick="saveVal()" value="Lưu">-->
+            <!--<input type="button" class="btn cancel" onclick="closeForm()" value="Hủy">-->
+        <!--</form>-->
+    <!--</div>-->
     <div id="session-list-container">
         <table>
             <thead>
@@ -29,14 +29,38 @@
                 <th>Vai trò</th>
             </tr>
             </thead>
-            <tbody id="user-list">
-            </tbody>
+            <div id="tbody-wrapper">
+                <tbody id="user-list">
+                </tbody>
+            </div>
         </table>
-        <div class="session" id="plus"><button id = "plus-button" onclick="add()">+</button></div>
-        <!--<table id="student-list">-->
-        <!--</table>-->
     </div>
+    <form id="user-form" autocomplete="off" method="post">
+        <div>
+            <label for="fullname">Tên đầy đủ: </label>
+            <input id="fullname" name="fullname" type="text" placeholder="Tên đầy đủ" required>
+        </div>
+        <div>
+            <label for="username">Tên đăng nhập: </label>
+            <input id="username" name="username" type="text" placeholder="Tên đăng nhập" required>
+        </div>
+        <div>
+            <label for="password">Mật khẩu: </label>
+            <input id="password" name="password" type="password" placeholder="Mật khẩu" required>
+        </div>
+        <div>
+            <label for="role">Vai trò: </label>
+            <select name="role" id="role">
+                <option value="lecturer">Giảng viên</option>
+                <option value="student">Sinh viên</option>
+            </select>
+        </div>
+        <div>
+            <button class="create-btn">Tạo người dùng</button>
+        </div>
+    </form>
 </div>
+<script src="/socket.io/socket.io.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/userManagement/userManagement.js"></script>
 </body>

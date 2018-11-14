@@ -36,5 +36,14 @@ module.exports = {
             .catch(error => {
                 res.send(error)
             })
+    },
+    deleteSession(req, res) {
+        db.Session.findByIdAndDelete(req.params.sessionID)
+            .then(deletedSession => {
+                res.json(deletedSession)
+            })
+            .catch(error => [
+                res.send(error)
+            ])
     }
 };

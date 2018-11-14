@@ -6,6 +6,7 @@ router.route('/')
     .post(helpers.createSession);
 
 router.route("/:sessionID")
-    .put(helpers.updateSession);
+    .put(helpers.updateSession)
+    .delete(helpers.deleteSession);
 
 module.exports = router;

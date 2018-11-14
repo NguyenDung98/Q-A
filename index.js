@@ -43,6 +43,9 @@ io.on('connection', socket => {
     });
     socket.on('updateSession', session => {
         io.emit('updateSession', session)
+    });
+    socket.on('deleteSession', sessionID => {
+        io.emit('deleteSession', sessionID)
     })
 });
 
