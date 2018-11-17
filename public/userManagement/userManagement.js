@@ -122,9 +122,20 @@ userForm.addEventListener('submit', e => {
         .then(user => user.data)
         .then(user => {
             userForm.reset();
-            addDataToRow(user);
+            if (checkIfUserHasProperty(user)) {
+                addDataToRow(user);
+            }
         })
         .catch(error => {
             console.log(error);
         })
 });
+
+
+function checkIfUserHasProperty(user) {
+    let count = 0;
+    for (let prop in user) {
+        count++;
+    }
+    return count;
+}

@@ -14,8 +14,8 @@ let commentSchema = new mongoose.Schema({
 		default: 0
 	},
 	user: {
-		type: String,
-		default: 'Ẩn danh'
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
 	},
 	question: {
 		type: mongoose.Schema.Types.ObjectId,

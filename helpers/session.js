@@ -11,7 +11,16 @@ module.exports = {
             })
     },
     getAllSession(req, res) {
-        db.Session.find()
+        db.Session.find().populate('user', '-password')
+            .then(sessions => {
+                res.json(sessions)
+            })
+            .catch(error => {
+                res.send(error)
+            })
+    },
+    getSessionsByUserID(req, res) {
+        db.Session.find({user: req.params.userID})
             .then(sessions => {
                 res.json(sessions)
             })

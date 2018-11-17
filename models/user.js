@@ -7,11 +7,12 @@ let userSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        required: 'User Name is required!'
+        unique: true,
+        required: 'username is required!'
     },
     role: {
         type: String,
-        default: 'Student'
+        required: 'user must have a role!'
     },
     password: {
         type: String,

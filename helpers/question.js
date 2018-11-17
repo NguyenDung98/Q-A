@@ -29,7 +29,7 @@ module.exports = {
             })
     },
     getQuestionByID(questionID) {
-        return db.Question.findById(questionID)
+        return db.Question.findById(questionID).populate('user', '-password')
             .then(question => {
                 return question;
             })
@@ -38,7 +38,7 @@ module.exports = {
             })
     },
     getQuestionBySessionId(req, res) {
-        db.Question.find({session: req.params.sessionID})
+        db.Question.find({session: req.params.sessionID}).populate('user', '-password')
             .then(questions => {
                 res.json(questions)
             })

@@ -21,7 +21,7 @@
 <div>
     <div class="container" style="padding-bottom: 0">
         <div class="question-box">
-            <div class="people"><%= question.user %>&nbsp&nbsp&nbsp•</div>
+            <div class="people"><%= question.user.fullName %>&nbsp&nbsp&nbsp•</div>
             <% var date =  new Date(question.postTime) %>
             <div class="time">
                 <%= date.toLocaleTimeString() %>
@@ -47,6 +47,12 @@
         <br class="clear"/>
     </div>
 </div>
+<script>
+    let userInfo = {
+        id: '<%= userInfo._id %>',
+        fullName: '<%= userInfo.fullName %>'
+    }
+</script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/answerQuestion/answerQuestion.js"></script>

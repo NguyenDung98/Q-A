@@ -5,6 +5,7 @@ var eventPassword = document.getElementById("event-pass");
 var eventBegin = document.getElementById("begin-time");
 var eventEnd = document.getElementById("end-time");
 var eventList = document.getElementById("event-list");
+var userID = document.getElementsByTagName('body')[0].id;
 let socket = io();
 
 //hộp dropdown
@@ -18,7 +19,7 @@ function dropclick() {
 }
 
 // lấy dữ liệu từ server
-axios.get('/api/session/')
+axios.get(`/api/session/${userID}`)
     .then(sessions => sessions.data)
     .then(sessions => {
         // eventList.removeChild(bigLoader);
@@ -140,8 +141,8 @@ function addSession(newSession) {
     let beginDate = new Date(newSession.beginDate),
         endDate = new Date(newSession.endDate);
 
-    newEvent.innerHTML = "<div class=\"w3-card w3-white w3-round-medium\" style=\"margin: 15px 10px 5px 0;\" onmouseover=\"mOver(this)\" onmouseout=\"mOut(this)\">" +
-        "  <div class=\"w3-container\" style=\"padding: 5px 10px;\">" +
+    newEvent.innerHTML = "<div class=\"w3-card w3-white w3-round-medium\" style=\"margin: 15px 10px 5px 0\" onmouseover=\"mOver(this)\" onmouseout=\"mOut(this)\">" +
+        "  <div class=\"w3-container\" style=\"padding: 5px 10px;position: relative;height: 240px;\">" +
         "	  <div class=\"w3-bar\">" +
         `		  <label class=\"w3-bar-item w3-large w3-text-teal\" style=\"display: block; padding-left: 0\">${newSession.eventCode}</label>` +
         "		  <div class=\"tooltip w3-bar-item w3-right w3-padding-small\" style='padding: 0 !important'>" +
@@ -160,7 +161,7 @@ function addSession(newSession) {
         `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.eventName}</label>` +
         `	  <label class=\"w3-small\" style=\"display: block; opacity: 0.5;\">${beginDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}</label>` +
         "	  <br><br>" +
-        `	  <a href='/session/${newSession.eventCode}?id=${newSession._id}' class=\"w3-button w3-block hide w3-teal w3-hover-teal\" style=\"opacity:1.0; visibility:hidden; border-radius:5px\">Load</a>` +
+        `	  <a href='/session/${newSession.eventCode}?id=${newSession._id}' class=\"w3-button hide w3-teal w3-hover-teal loadingBtn\">Load</a>` +
         "  </div>" +
         "</div>";
 
@@ -173,7 +174,7 @@ function addSession(newSession) {
 
 }
 
-//đẩy dữ liệu qua kênh addSession
+//đẩy dữ liệu qua kênh session
 function getVal() {
     let eventName = eventNameInput.value;
     let eventCode = eventPassword.value;
@@ -275,7 +276,8 @@ function getVal() {
             eventName,
             eventCode,
             beginDate,
-            endDate
+            endDate,
+            user: userID
         };
         axios.post('/api/session/', newSession)
             .then(session => session.data)
@@ -291,7 +293,9 @@ function getVal() {
 
 // kênh thêm phiên hỏi đáp
 socket.on('addSession', session => {
-    addSession(session)
+    if (session.user === userID) {
+        addSession(session);
+    }
 });
 
 // kênh cập nhật phiên hỏi đáp

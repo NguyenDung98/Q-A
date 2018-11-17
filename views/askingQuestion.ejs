@@ -26,8 +26,8 @@
         <div id="input-zone">
             <textarea rows="3" name="question" id="input-question" maxlength="200" placeholder="Nhập câu hỏi..."
                       onfocus="focusFunction()"></textarea><br>
-            <input type="text" name="author" id="input-author" style="display: none;"
-                   placeholder="Nhập tên của bạn..."/><br>
+            <!--<input type="text" name="author" id="input-author" style="display: none;"-->
+                   <!--placeholder="Nhập tên của bạn..."/><br>-->
             <button id="cancel-button" onclick="cancelAddQuestion()" style="display: none;">Hủy bỏ</button>
             <button id="done-button" onclick="getVal()" style="display: none;">Xong</button>
         </div>
@@ -35,6 +35,12 @@
 
     <table id="list-question" border="1px" cellspacing="0" cellpadding="5px"></table>
 </div>
+<script>
+    let userInfo = {
+        id: '<%= userInfo._id %>',
+        fullName: '<%= userInfo.fullName %>'
+    }
+</script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/askingQuestion/askingQuestion_1.js"></script>

@@ -16,8 +16,8 @@ axios.get(`/api/answer/${questionID}`)
             addCommentToDOM(comment)
         })
     })
-    .catch(() => {
-        window.location.href = '/asking';
+    .catch(error => {
+        alert(error);
     });
 
 function display_enter() {
@@ -28,13 +28,14 @@ function display_enter() {
 
 function add_Cmt() {
     var comment = commentInput.value;
-    var newComment = {comment, question: questionID, postTime: new Date()};
+    var newComment = {comment, question: questionID, postTime: new Date(), user: userInfo.id};
     if (comment) {
         axios.post('/api/answer/', newComment)
             .then(comment => comment.data)
             .then(comment => {
                 axios.put(`/api/question/${questionID}`, {comment: comments.length + 1})
                     .then(() => {
+                        comment.userFullName = userInfo.fullName;
                         // đẩy dữ liệu qua kênh 'addComment'
                         socket.emit('addComment', comment);
                     })
@@ -59,6 +60,7 @@ window.onkeydown = (e) => {
 
 // đẩy comment vào DOM
 function addCommentToDOM(commentData) {
+    const fullName = commentData.userFullName ? commentData.userFullName : commentData.user.fullName;
     var comment = document.createElement('div');
     date =  new Date(commentData.postTime);
 
@@ -68,7 +70,7 @@ function addCommentToDOM(commentData) {
     comment.classList.add('comment');
     comment.id = commentData._id; // thêm id cho mỗi comment
     comment.innerHTML =
-        `<div class=\"people\">${commentData.user}&nbsp&nbsp&nbsp•</div>` +
+        `<div class=\"people\">${fullName}&nbsp&nbsp&nbsp•</div>` +
         `<div class=\"time\">${date.toLocaleTimeString()}&nbsp&nbsp&nbsp${date.toLocaleDateString()}</div>` +
         `<p class="comment-content">${commentData.comment}</p>` +
         "<div class=\"vote-area\">" +

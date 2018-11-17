@@ -1,24 +1,31 @@
-let express       = require("express"),
-    app           = express(),
-    bodyParser    = require('body-parser'),
-    http          = require("http").Server(app),
-    io            = require('socket.io')(http),
+let express = require("express"),
+    app = express(),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    http = require("http").Server(app),
+    io = require('socket.io')(http),
     questionRoute = require('./routes/question'),
-    answerRoute   = require('./routes/comment'),
-    sessionRoute  = require('./routes/session'),
-    appRoute      = require('./routes/app');
-    userRoute     = require('./routes/user');
+    answerRoute = require('./routes/comment'),
+    sessionRoute = require('./routes/session'),
+    appRoute = require('./routes/index'),
+    userRoute = require('./routes/user');
 
 // cau hinh express
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(session({
+    secret: 'Nothing',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
-app.use('/api/question', questionRoute);
-app.use('/api/answer', answerRoute);
-app.use('/api/session', sessionRoute);
+
+app.use('', questionRoute);
+app.use('', answerRoute);
+app.use('', sessionRoute);
 app.use('/api/user', userRoute);
 app.use('', appRoute);
 

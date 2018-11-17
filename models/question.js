@@ -9,10 +9,6 @@ let questionSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    user: {
-        type: String,
-        default: 'Ẩn danh'
-    },
     postTime: Date,
     comment: {
         type: Number,
@@ -21,6 +17,10 @@ let questionSchema = new mongoose.Schema({
     session: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Session'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     order: Number
 });

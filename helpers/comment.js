@@ -29,7 +29,7 @@ module.exports = {
 			})
 	},
     getCommentByQuestionID(req, res) {
-        db.Comment.find({question: req.params.questionID})
+        db.Comment.find({question: req.params.questionID}).populate('user', '-password')
             .then(comments => {
                 res.json(comments)
             })

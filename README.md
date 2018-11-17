@@ -14,7 +14,7 @@ npm install
 ```
 - Cuối cùng là chạy ứng dụng:
 ``` 
-node index.js
+node app.js
 ```
 - Vào [đây](http://localhost:3000/home) hoặc nhập localhost:3000 vào url để truy cập ứng dụng.
 - Khi muốn dừng ứng dụng thì sử dụng tổ hợp phim `Ctr + C` tại cmd hoặc git bash

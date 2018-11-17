@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/login/login.css">
+</head>
+<body>
+	<div id="header">
+		<i class="fas fa-question"></i> <i class="fas fa-question"></i> Question & Answer
+		<i class="fas fa-hand-paper"></i> <i class="fas fa-hand-paper"></i>
+	</div>
+	<form method="post" action="/login" class="form-login">
+		<h1 id="login-title">Tạo sự kiện và tham gia hỏi đáp</h1>
+		<input type="text" name="username" id="username" placeholder="Tên đăng nhập">
+		<input type="password" name="password" id="password" placeholder="Mật khẩu">
+		<button id="login-button" onclick="loginClick()">Đăng nhập</button>
+		<h5 id="error">Tên đăng nhập hoặc mật khẩu không chính xác!</h5>
+	</form>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="/login/login.js"></script>
+</body>
+</html>

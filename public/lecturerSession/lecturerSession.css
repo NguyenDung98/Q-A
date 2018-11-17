@@ -17,9 +17,7 @@ body{
 
 .container{
 	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 50px;
+	margin: 50px auto;
 }
 
 .header-container{
@@ -91,4 +89,14 @@ i.fas {
 
 .w3-bar {
 	overflow: visible !important;
+}
+
+.loadingBtn {
+	opacity: 1;
+	visibility: hidden;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 10px;
+	right: 5px;
+	width: 95%;
 }

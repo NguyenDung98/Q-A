@@ -78,7 +78,7 @@ button:focus, input:focus, textarea:focus {
 }
 
 #input-zone {
-    margin: 0 auto;
+    margin: 0 auto 10px;
     width: 60%;
 }
 

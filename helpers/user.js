@@ -1,20 +1,26 @@
 let db = require('../models');
+const userType = require("../models/userType");
 
 module.exports = {
 	createUser(req, res){
-		db.User.create(req.body)
-			.then(user => {
-				res.json(user)
-			})
-			.catch(error => {
-				res.send(error);
-			})
+        if (req.body.role !== userType.admin) {
+            db.User.create(req.body)
+                .then(session => {
+                    res.json(session)
+                })
+                .catch(error => {
+                    res.send(error)
+                })
+        } else {
+            res.send(new Error("Can not create user ADMIN!"));
+        }
 	},
 	getAllUser(req, res){
 		db.User.find()
 			.then(users => {
-				res.json(users)
-			})
+				const filteredUsers = users.filter(user => user.role !== userType.admin);
+                res.json(filteredUsers);
+            })
 			.catch(error => [
 				res.send(error)
 			])
@@ -36,5 +42,14 @@ module.exports = {
             .catch(error => [
                 res.send(error)
             ])
-    }
+    },
+	verifyUser(username, password) {
+		return db.User.findOne({username, password})
+			.then(user => {
+				return user;
+			})
+			.catch(error => {
+				return new Error(error);
+			})
+	}
 };

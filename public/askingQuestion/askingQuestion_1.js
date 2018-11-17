@@ -9,7 +9,6 @@ let inputBox = document.getElementById('form-input'),
     sessionID = document.getElementsByTagName('body')[0].id;
 
 // local variables
-let userID = 1 + Math.random();
 let userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
 let socket = io();
 // loader
@@ -22,7 +21,7 @@ bigLoader.classList.add('loader-container');
 bigLoader.innerHTML += '<div></div>';
 bigLoader.firstElementChild.classList.add('loader', 'big-loader');
 
-userIdentity.innerText += userID;
+userIdentity.innerText += userInfo.fullName;
 inputBox.append(bigLoader);
 
 // lấy dữ liệu từ server
@@ -51,9 +50,8 @@ function getVal() {
         questionInput.style.border = "1px solid red";
     }
     else {
-        let user = authorInput.value.trim() ? authorInput.value.trim() : "Ẩn danh";
         let newQuestion = {
-            user,
+            user: userInfo.id,
             question: questionInput.value,
             postTime: new Date(),
             session: sessionID,
@@ -65,6 +63,7 @@ function getVal() {
             .then(question => question.data)
             .then(question => {
                 inputBox.removeChild(bigLoader);
+                question.userFullName = userInfo.fullName;
                 socket.emit('addQuestion', question);
             })
             .catch(error => {
@@ -72,31 +71,32 @@ function getVal() {
             });
 
         questionInput.style.border = "2px solid #aaa";
-        authorInput.style.display = "none";
+        // authorInput.style.display = "none";
         doneButton.style.display = "none";
         cancelButton.style.display = "none";
     }
     questionInput.value = "";
-    document.getElementById("input-author").value = "";
+    // document.getElementById("input-author").value = "";
 }
 
 function focusFunction() {
-    authorInput.style.display = "block";
+    // authorInput.style.display = "block";
     doneButton.style.display = "block";
     cancelButton.style.display = "block";
 }
 
 function cancelAddQuestion() {
     questionInput.value = "";
-    document.getElementById("input-author").value = "";
+    // document.getElementById("input-author").value = "";
     questionInput.style.border = "2px solid #aaa";
-    authorInput.style.display = "none";
+    // authorInput.style.display = "none";
     doneButton.style.display = "none";
     cancelButton.style.display = "none";
 }
 
 // Thêm câu hỏi mới
 function addQuestion(newQuestion) {
+    const fullName = newQuestion.userFullName ? newQuestion.userFullName : newQuestion.user.fullName;
     let replyButton = document.createElement("input");
     replyButton.type = "button";
     replyButton.classList.add("reply-button");
@@ -106,7 +106,6 @@ function addQuestion(newQuestion) {
 
     let cell1 = newRow.insertCell(0);
     let cell2 = newRow.insertCell(1);
-
     newRow.data = {
         postTime: newQuestion.postTime
     };
@@ -118,7 +117,7 @@ function addQuestion(newQuestion) {
         "<span>lượt</span>";
     cell1.classList.add("vote-zone");
     cell2.innerHTML =
-        `<span class="author">${newQuestion.user}</span><br>` +
+        `<span class="author">${fullName}</span><br>` +
         `<span class="question">${newQuestion.question}</span>`;
     // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
     let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự
