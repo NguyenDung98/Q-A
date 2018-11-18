@@ -11,6 +11,7 @@ let inputBox = document.getElementById('form-input'),
 // local variables
 let userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
 let socket = io();
+let questionData = new Map();
 // loader
 let loader = document.createElement('div');
 let bigLoader = loader.cloneNode(true);
@@ -30,6 +31,7 @@ axios.get(`/api/question/${sessionID}`)
     .then(questions => {
         inputBox.removeChild(bigLoader);
         questions.forEach(question => {
+            questionData.set(question._id, question);
             addQuestion(question)
         })
     })
@@ -113,12 +115,15 @@ function addQuestion(newQuestion) {
     newRow.classList.add('question-block');
     cell1.innerHTML =
         "<i class=\"fas fa-caret-up vote-icon\"></i><br>" +
-        `<span class=\"vote-count\">${newQuestion.vote}</span><br>` +
+        `<span class=\"vote-count\">${newQuestion.vote.length}</span><br>` +
         "<span>lượt</span>";
     cell1.classList.add("vote-zone");
     cell2.innerHTML =
         `<span class="author">${fullName}</span><br>` +
         `<span class="question">${newQuestion.question}</span>`;
+    // xem liệu người dùng đã bình chọn cho câu hỏi hay chưa
+    userMakeVote = newQuestion.vote.some(userID => userID === userInfo.id);
+    if (userMakeVote) cell1.children[0].classList.add('vote-icon-clicked');
     // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
     let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự
     for (let i = 0; i < 3 - breakLines; i++) {

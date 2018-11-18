@@ -1,10 +1,21 @@
-function handleVoteQuestion(icon, votes) {
-    if (userID === votes.userID && !userMakeVote) {
+function handleVoteQuestion(icon, vote) {
+    // xử lí phần hiển thị
+    if (userInfo.id === vote.userID && !userMakeVote) {
         icon.classList.toggle('vote-icon-clicked');
     }
-    userMakeVote = false; // reset lại dấu
     let count = icon.nextSibling.nextElementSibling;
-    count.innerText = votes.vote;
+    userMakeVote = false; // reset lại dấu
+    count.innerText = vote.vote.length;
+    // xem liệu người dùng đã bình chọn cho câu hỏi hay chưa
+    let question = questionData.get(vote._id);
+    if (vote.vote.length > question.vote.length) {
+        question.vote.push(vote.userID);
+        questionData.set(vote._id, question);
+    }
+    else {
+        question.vote = question.vote.filter(userID => userID !== vote.userID);
+        questionData.set(vote._id, question);
+    }
     // sap xep lai cac cau hoi
     sortQuestions();
 }
@@ -61,20 +72,30 @@ function handleIconClick() {
     let countSpan = this.nextSibling.nextElementSibling;
     let count = 0;
     const questionID = this.parentElement.parentElement.id;
+    let question = questionData.get(questionID);
 
     if (this.classList.contains('vote-icon-clicked')) {
         count = Number(countSpan.innerText) + 1;
     } else count = Number(countSpan.innerText) - 1;
     countSpan.innerHTML = loader.outerHTML;
+    // xem liệu người dùng đã bình chọn cho câu hỏi hay chưa
+    if (count > question.vote.length) {
+        question.vote.push(userInfo.id);
+        questionData.set(questionID, question);
+    }
+    else {
+        question.vote = question.vote.filter(userID => userID !== userInfo.id);
+        questionData.set(questionID, question);
+    }
     // update vote cho câu hỏi lên server
     this.removeEventListener('click', handleIconClick);
-    axios.put(`/api/question/${questionID}`, {vote: count})
+    axios.put(`/api/question/${questionID}`, {vote: question.vote})
         .then(question => question.data)
         .then(question => {
             // đẩy dữ liệu qua kênh 'moreVoteQuestion'
             socket.emit('moreVoteQuestion', {
                 ...question,
-                userID
+                userID: userInfo.id
             });
         })
         .catch(error => {
@@ -95,6 +116,7 @@ function compare(val_1, val_2) {
 // kênh thêm câu hỏi
 socket.on('addQuestion', question => {
     if (sessionID === question.session) {
+        questionData.set(question._id, question);
         addQuestion(question);
     }
 });

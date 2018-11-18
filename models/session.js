@@ -7,7 +7,8 @@ let sessionSchema = new mongoose.Schema({
     },
     eventCode: {
         type: String,
-        required: 'Event code is required!'
+        required: 'Event code is required!',
+        unique: true
     },
     beginDate: {
         type: Date,

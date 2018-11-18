@@ -5,14 +5,14 @@ let commentSchema = new mongoose.Schema({
 		type: String,
 		required: 'Comment is required!'
 	},
-	voteUp: {
-		type: Number,
-		default: 0
-	},
-	voteDown: {
-		type: Number,
-		default: 0
-	},
+	voteUp: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	}],
+	voteDown: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+	}],
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'

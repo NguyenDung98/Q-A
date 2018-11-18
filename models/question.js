@@ -5,10 +5,10 @@ let questionSchema = new mongoose.Schema({
         type: String,
         required: 'Question is required!'
     },
-    vote: {
-        type: Number,
-        default: 0
-    },
+    vote: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     postTime: Date,
     comment: {
         type: Number,
