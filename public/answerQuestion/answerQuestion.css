@@ -173,3 +173,19 @@ button.up-vote, button.down-vote{
 p.upVote-count, p.downVote-count{
 	float: left;
 }
+
+
+.backBtn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	float: left;
+	margin-left: 20px;
+	position: absolute;
+	padding: 10px;
+}
+
+.backBtn i {
+	color: white;
+	font-size: 40px;
+}

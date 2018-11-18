@@ -28,7 +28,13 @@ router.post('/login', middleware.isNotLoggedIn ,async (req, res) => {
     }
 });
 
-router.get('/admin/user', (req, res) => {
+// đăng xuất người dùng
+router.post('/logout', middleware.isLoggedIn, (req, res) => {
+    req.session.userInfo = undefined;
+    res.redirect('/');
+});
+
+router.get('/admin/user', middleware.isAdmin, (req, res) => {
     res.render('userManagement')
 });
 

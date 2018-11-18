@@ -25,7 +25,7 @@ router.get('/session/:eventCode/question/:order', middleware.isLoggedIn ,async (
         if (!session) throw new Error('session not found');
         if (!question) throw new Error('question not found');
         if (question.session.toString() !== session._id.toString()) throw Error("This question is not in this session!");
-        res.render('answerQuestion', {question, eventName: session.eventName, userInfo: req.session.userInfo});
+        res.render('answerQuestion', {question, eventName: session.eventName, userInfo: req.session.userInfo, lastHref: req.headers.referer});
     } catch (error) {
         console.log(error);
         res.redirect('/session')

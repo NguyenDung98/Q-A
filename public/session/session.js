@@ -247,7 +247,7 @@ function createSepratorEventSign(fullName, username) {
 // kênh thêm phiên hỏi đáp
 socket.on('addSession', session => {
     addSession(session);
-    // fix
+    // todo: fix
 });
 
 // kênh cập nhật phiên hỏi đáp

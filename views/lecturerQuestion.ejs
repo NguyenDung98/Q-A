@@ -12,26 +12,26 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/askingQuestion/askingQuestion.css">
+    <link rel="stylesheet" type="text/css" href="/lecturerQuestion/lecturerQuestion.css">
 </head>
 <body id="<%= session._id %>">
 <div id="header">
     <a href="<%= lastHref %>" class="backBtn"><i class="fas fa-long-arrow-alt-left"></i></a>
     <h1 id="event-name"><span>Tên bài giảng: </span><%= session.eventName %></h1>
     <p id="symbol"><i class="fas fa-book-reader"></i></p>
-    <p id="user-id">Xin chào <span></span></p>
+    <p id="user-id">Xin chào giảng viên <span></span></p>
 </div>
 <div id="body">
     <div id="form-input">
-        <h4 id="title">Mời bạn đặt câu hỏi</h4>
-        <div id="input-zone">
-            <textarea rows="3" name="question" id="input-question" maxlength="200" placeholder="Nhập câu hỏi..."
-                      onfocus="focusFunction()"></textarea><br>
-            <!--<input type="text" name="author" id="input-author" style="display: none;"-->
-                   <!--placeholder="Nhập tên của bạn..."/><br>-->
-            <button id="cancel-button" onclick="cancelAddQuestion()" style="display: none;">Hủy bỏ</button>
-            <button id="done-button" onclick="getVal()" style="display: none;">Xong</button>
-        </div>
+        <h4 id="title">Dưới đây là tất cả các câu hỏi được đặt ra</h4>
+        <!--<div id="input-zone">-->
+            <!--<textarea rows="3" name="question" id="input-question" maxlength="200" placeholder="Nhập câu hỏi..."-->
+                      <!--onfocus="focusFunction()"></textarea><br>-->
+            <!--&lt;!&ndash;<input type="text" name="author" id="input-author" style="display: none;"&ndash;&gt;-->
+            <!--&lt;!&ndash;placeholder="Nhập tên của bạn..."/><br>&ndash;&gt;-->
+            <!--<button id="cancel-button" onclick="cancelAddQuestion()" style="display: none;">Hủy bỏ</button>-->
+            <!--<button id="done-button" onclick="getVal()" style="display: none;">Xong</button>-->
+        <!--</div>-->
     </div>
 
     <table id="list-question" border="1px" cellspacing="0" cellpadding="5px"></table>
@@ -44,7 +44,7 @@
 </script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/askingQuestion/askingQuestion_1.js"></script>
-<script src="/askingQuestion/askingQuestion_2.js"></script>
+<script src="/lecturerQuestion/lecturerQuestion_1.js"></script>
+<script src="/lecturerQuestion/lecturerQuestion_2.js"></script>
 </body>
 </html>

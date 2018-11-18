@@ -161,7 +161,7 @@ function addSession(newSession) {
         `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.eventName}</label>` +
         `	  <label class=\"w3-small\" style=\"display: block; opacity: 0.5;\">${beginDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}</label>` +
         "	  <br><br>" +
-        `	  <a href='/session/${newSession.eventCode}?id=${newSession._id}' class=\"w3-button hide w3-teal w3-hover-teal loadingBtn\">Load</a>` +
+        `	  <a href='/lecturer/session/${newSession.eventCode}?id=${newSession._id}' class=\"w3-button hide w3-teal w3-hover-teal loadingBtn\">Load</a>` +
         "  </div>" +
         "</div>";
 

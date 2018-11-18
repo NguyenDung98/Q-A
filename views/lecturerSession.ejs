@@ -13,9 +13,7 @@
 
 <!--------------TOP---------------->
 <div class="w3-bar" style="background-color: #325386d1;">
-
-    <a href="/session" class="w3-button w3-bar-item top-menu-button" style="text-decoration: none;top: 10px">Bảng điều
-        khiển</a>
+    <a href="/session" class="w3-button w3-bar-item top-menu-button" style="text-decoration: none;top: 10px">Bảng điều khiển</a>
 
     <a class="w3-bar-item top-menu-button w3-right w3-button" style="width: 5%">
         <i class="fa fa-bell-o"></i>
@@ -25,12 +23,13 @@
             khoản
             <i class="fa fa-angle-down"></i>
         </a>
-        <div class="w3-dropdown-content w3-bar-block w3-border" id="dropContent" style="position: absolute;">
-            <a href="/session" class="w3-bar-item w3-button">Bảng của tôi</a>
-            <a href="#" class="w3-bar-item w3-button">Hồ sơ</a>
+        <div class="w3-dropdown-content w3-bar-block w3-border" id="dropContent" style="position: absolute; top: 30px">
+            <form action="/logout" method="post">
+                <button class="w3-bar-item w3-button">Đăng xuất</button>
+            </form>
+            <!--<a href="#" class="w3-bar-item w3-button">Hồ sơ</a>-->
         </div>
     </div>
-
 </div>
 
 <!------------PAGE-CONTENT------------>
