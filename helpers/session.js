@@ -46,6 +46,15 @@ module.exports = {
                 res.send(error)
             })
     },
+    updateSession_server(sessionID, data) {
+        return db.Session.findByIdAndUpdate(sessionID, data, {new: true})
+            .then(session => {
+                return session;
+            })
+            .catch(error => {
+                return error
+            })
+    },
     deleteSession(req, res) {
         db.Session.findByIdAndDelete(req.params.sessionID)
             .then(deletedSession => {

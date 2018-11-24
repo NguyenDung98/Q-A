@@ -8,11 +8,13 @@ let express = require("express"),
     answerRoute = require('./routes/comment'),
     sessionRoute = require('./routes/session'),
     appRoute = require('./routes/index'),
-    userRoute = require('./routes/user');
+    userRoute = require('./routes/user'),
+    methodOverride = require('method-override');
 
 // cau hinh express
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 app.use(session({
     secret: 'Nothing',
     resave: false,

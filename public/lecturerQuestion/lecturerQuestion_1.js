@@ -1,12 +1,9 @@
 let inputBox = document.getElementById('form-input'),
-    questionInput = document.getElementById("input-question"),
-    authorInput = document.getElementById("input-author"),
-    doneButton = document.getElementById("done-button"),
-    cancelButton = document.getElementById("cancel-button"),
     table = document.getElementsByTagName('table')[0],
     voteIcons = document.getElementsByClassName('vote-icon'),
     userIdentity = document.querySelector('#user-id span'),
-    sessionID = document.getElementsByTagName('body')[0].id;
+    sessionID = document.getElementsByTagName('body')[0].id,
+    surveyBtn = document.getElementById('survey-button');
 
 // local variables
 let userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
@@ -24,6 +21,7 @@ bigLoader.firstElementChild.classList.add('loader', 'big-loader');
 
 userIdentity.innerText += userInfo.fullName;
 inputBox.append(bigLoader);
+surveyBtn.disabled = surveyCreated;
 
 // lấy dữ liệu từ server
 axios.get(`/api/question/${sessionID}`)
@@ -46,55 +44,6 @@ window.onkeydown = (e) => {
         location.href = url;
     }
 };
-
-// function getVal() {
-//     if (questionInput.value.trim() === "") {
-//         questionInput.style.border = "1px solid red";
-//     }
-//     else {
-//         let newQuestion = {
-//             user: userInfo.id,
-//             question: questionInput.value,
-//             postTime: new Date(),
-//             session: sessionID,
-//             order: table.rows.length + 1
-//         };
-//         inputBox.append(bigLoader);
-//         // đẩy câu hỏi mới lên server
-//         axios.post('/api/question/', newQuestion)
-//             .then(question => question.data)
-//             .then(question => {
-//                 inputBox.removeChild(bigLoader);
-//                 question.userFullName = userInfo.fullName;
-//                 socket.emit('addQuestion', question);
-//             })
-//             .catch(error => {
-//                 alert(error);
-//             });
-//
-//         questionInput.style.border = "2px solid #aaa";
-//         // authorInput.style.display = "none";
-//         doneButton.style.display = "none";
-//         cancelButton.style.display = "none";
-//     }
-//     questionInput.value = "";
-//     // document.getElementById("input-author").value = "";
-// }
-
-// function focusFunction() {
-//     // authorInput.style.display = "block";
-//     doneButton.style.display = "block";
-//     cancelButton.style.display = "block";
-// }
-//
-// function cancelAddQuestion() {
-//     questionInput.value = "";
-//     // document.getElementById("input-author").value = "";
-//     questionInput.style.border = "2px solid #aaa";
-//     // authorInput.style.display = "none";
-//     doneButton.style.display = "none";
-//     cancelButton.style.display = "none";
-// }
 
 // Thêm câu hỏi mới
 function addQuestion(newQuestion) {
@@ -136,4 +85,16 @@ function gotoAnswerPage(questionID, questionOrder) {
     let uri = location.host + location.pathname.substring(location.pathname.indexOf('/', 1));
     window.history.replaceState({}, document.title, url);
     location.href = 'http://' + uri + `/question/${questionOrder}${query}&question=${questionID}`;
+}
+
+function makeSurvey(surveyBtn, isCreated) {
+    if (!isCreated) {
+        const updateData = {
+            survey: {
+                isCreated: true
+            }
+        };
+        axios.put(`/api/session/${sessionID}`, updateData);
+    }
+    surveyBtn.disabled = true;
 }

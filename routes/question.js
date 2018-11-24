@@ -28,7 +28,7 @@ router.get('/session/:eventCode', middleware.isLoggedIn ,async (req, res) => {
     }
 });
 
-router.get('/lecturer/session/:eventCode', middleware.isLecturer ,async (req, res) => {
+router.get('/lecturer/session/:eventCode', middleware.isLecturerOrAdmin ,async (req, res) => {
     try {
         const session = await sessionHelper.getSessionByID(req.query.id);
         if (!session || session.eventCode !== req.params.eventCode) throw new Error('session not found');

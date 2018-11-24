@@ -24,19 +24,18 @@
 <div id="body">
     <div id="form-input">
         <h4 id="title">Dưới đây là tất cả các câu hỏi được đặt ra</h4>
-        <!--<div id="input-zone">-->
-            <!--<textarea rows="3" name="question" id="input-question" maxlength="200" placeholder="Nhập câu hỏi..."-->
-                      <!--onfocus="focusFunction()"></textarea><br>-->
-            <!--&lt;!&ndash;<input type="text" name="author" id="input-author" style="display: none;"&ndash;&gt;-->
-            <!--&lt;!&ndash;placeholder="Nhập tên của bạn..."/><br>&ndash;&gt;-->
-            <!--<button id="cancel-button" onclick="cancelAddQuestion()" style="display: none;">Hủy bỏ</button>-->
-            <!--<button id="done-button" onclick="getVal()" style="display: none;">Xong</button>-->
-        <!--</div>-->
+        <button id="survey-button" onclick="makeSurvey(this, <%= session.survey.isCreated %>)">
+            Tạo khảo sát về giờ học
+        </button>
+        <button id="report-button">
+            Thống kê khảo sát
+        </button>
     </div>
 
     <table id="list-question" border="1px" cellspacing="0" cellpadding="5px"></table>
 </div>
 <script>
+    let surveyCreated = Boolean(<%= session.survey.isCreated %>);
     let userInfo = {
         id: '<%= userInfo._id %>',
         fullName: '<%= userInfo.fullName %>'

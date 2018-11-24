@@ -82,26 +82,6 @@ button:focus, input:focus, textarea:focus {
     width: 60%;
 }
 
-#done-button, #cancel-button{
-	background-color: #325386d1;
-    cursor: pointer;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	float: right;
-	font-size: 0.9em;
-	margin: 8px 5px;
-	padding: 15px 35px;
-}
-
-#cancel-button {
-    margin-right: 0;
-}
-
-#done-button:hover, #cancel-button:hover{
-    background-color: rgba(62, 111, 174, 0.82)
-}
-
 #event-name {
 	color: #ffdb4f;
     font-weight: 500;
@@ -192,7 +172,7 @@ table {
 	border: 1px solid #C3C3C9;
 	border-radius: 50%;
 	color: #C3C3C9;
-	cursor: pointer;
+	/*cursor: pointer;*/
 	font-size: 2.5em;
 	margin-bottom: 8px;
 	padding: 1px 8px;
@@ -226,4 +206,26 @@ table {
 .backBtn i {
 	color: white;
 	font-size: 40px;
+}
+
+
+#survey-button, #report-button {
+	background-color: #325386d1;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+	display: block;
+	font-size: 0.9em;
+	margin: 0 auto 10px;
+	padding: 15px 35px;
+}
+
+#survey-button:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+#survey-button:hover {
+	background-color: rgba(62, 111, 174, 0.82)
 }

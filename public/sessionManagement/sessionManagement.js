@@ -17,7 +17,16 @@ axios.get('/api/session/')
     .then(sessions => sessions.data)
     .then(sessions => {
         // eventList.removeChild(bigLoader);
+        const hasExpiredSession = sessions.some(session => session.endDate < Date() && session.isClosed === false);
+        let confirmed = false;
+        if (hasExpiredSession) {
+            confirmed = window.confirm('Bạn có muốn đóng toàn bộ phiên quá hạn?');
+        }
         sessions.forEach(session => {
+            if (session.endDate < Date() && !session.isClosed && confirmed) {
+                axios.put(`/api/session/${session._id}`, {isClosed: true});
+                session.isClosed = true;
+            }
             adminAddSession(session)
         })
     })

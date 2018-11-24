@@ -7,10 +7,10 @@ module.exports = {
 				res.json(comment)
 			})
 			.catch(error => {
-				res(send(error))
+				res.send(error)
 			})
 	},
-	getAllComment(req, res){
+	getAllComment(req, res) {
 		db.Comment.find()
 			.then(comments => {
 				res.json(comments)

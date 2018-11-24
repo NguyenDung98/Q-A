@@ -1,6 +1,6 @@
 let inputBox = document.getElementById('form-input'),
     questionInput = document.getElementById("input-question"),
-    authorInput = document.getElementById("input-author"),
+    surveyModal = document.getElementById('survey-modal'),
     doneButton = document.getElementById("done-button"),
     cancelButton = document.getElementById("cancel-button"),
     table = document.getElementsByTagName('table')[0],
@@ -24,6 +24,10 @@ bigLoader.firstElementChild.classList.add('loader', 'big-loader');
 
 userIdentity.innerText += userInfo.fullName;
 inputBox.append(bigLoader);
+
+if (surveyCreated && !userHasTakenSurvey) {
+    surveyModal.classList.remove('hidden');
+}
 
 // lấy dữ liệu từ server
 axios.get(`/api/question/${sessionID}`)
@@ -139,3 +143,13 @@ function gotoAnswerPage(questionID, questionOrder) {
     window.history.replaceState({}, document.title, url);
     location.href = clean_uri + `/question/${questionOrder}${query}&question=${questionID}`;
 }
+
+function closeSurveyModal() {
+    surveyModal.classList.add('hidden');
+}
+
+window.onclick = (e) => {
+    if (e.target.id === 'survey-modal') {
+        surveyModal.classList.add('hidden');
+    }
+};

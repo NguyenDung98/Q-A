@@ -13,8 +13,9 @@ module.exports = {
         }
         res.redirect('/');
     },
-    isLecturer(req, res, next) {
-        if (req.session.userInfo && req.session.userInfo.role === userType.lecturer) {
+    isLecturerOrAdmin(req, res, next) {
+        if (req.session.userInfo && (req.session.userInfo.role === userType.lecturer ||
+            req.session.userInfo.role === userType.admin)) {
             return next();
         }
         res.redirect('/');

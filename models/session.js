@@ -25,6 +25,20 @@ let sessionSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    survey: {
+        isCreated: {
+            type: Boolean,
+            default: false
+        },
+        data: [{
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            answer: Number,
+            feedback: String
+        }]
     }
 });
 

@@ -23,7 +23,16 @@ axios.get(`/api/session/${userID}`)
     .then(sessions => sessions.data)
     .then(sessions => {
         // eventList.removeChild(bigLoader);
+        const hasExpiredSession = sessions.some(session => session.endDate < Date() && session.isClosed === false);
+        let confirmed = false;
+        if (hasExpiredSession) {
+            confirmed = window.confirm('Bạn có muốn đóng toàn bộ phiên quá hạn?');
+        }
         sessions.forEach(session => {
+            if (session.endDate < Date() && !session.isClosed && confirmed) {
+                axios.put(`/api/session/${session._id}`, {isClosed: true});
+                session.isClosed = true;
+            }
             addSession(session)
         })
     })
@@ -60,52 +69,8 @@ function mOut(obj) {
     l[0].children[2].children[0].style.visibility = "hidden";
 }
 
-function parseMonth(value) {
-    var res = "";
-
-    switch (value) {
-        case 1:
-            res = "Feb";
-            break;
-        case 2:
-            res = "Mar";
-            break;
-        case 3:
-            res = "Apr";
-            break;
-        case 4:
-            res = "May";
-            break;
-        case 5:
-            res = "Jun";
-            break;
-        case 6:
-            res = "Jul";
-            break;
-        case 7:
-            res = "Aug";
-            break;
-        case 8:
-            res = "Sep";
-            break;
-        case 9:
-            res = "Oct";
-            break;
-        case 10:
-            res = "Nov";
-            break;
-        case 11:
-            res = "Dec";
-            break;
-        default:
-            res = "Jan";
-    }
-
-    return res;
-}
-
 function deleteEvent(obj) {
-    var confirmed = window.confirm("Are you sure to delete this event?");
+    var confirmed = window.confirm("Bạn muốn xóa phiên hỏi đáp này?");
     if (confirmed) {
         let sessionID = obj.parentElement.parentElement.parentElement.parentElement.parentElement.id;
         axios.delete(`/api/session/${sessionID}`)
@@ -161,7 +126,7 @@ function addSession(newSession) {
         `	  <label class=\"w3-xlarge\" style=\"display: block;\">${newSession.eventName}</label>` +
         `	  <label class=\"w3-small\" style=\"display: block; opacity: 0.5;\">${beginDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}</label>` +
         "	  <br><br>" +
-        `	  <a href='/lecturer/session/${newSession.eventCode}?id=${newSession._id}' class=\"w3-button hide w3-teal w3-hover-teal loadingBtn\">Load</a>` +
+        `	  <a href='/lecturer/session/${newSession.eventCode}?id=${newSession._id}' class=\"w3-button hide w3-teal w3-hover-teal loadingBtn\">Truy cập</a>` +
         "  </div>" +
         "</div>";
 

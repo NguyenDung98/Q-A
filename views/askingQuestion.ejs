@@ -24,6 +24,32 @@
 <div id="body">
     <div id="form-input">
         <h4 id="title">Mời bạn đặt câu hỏi</h4>
+        <div id="survey-modal" class="hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" onclick="closeSurveyModal()">&times;</button>
+                    <p>Khảo sát cho bài giảng: <span><%= session.eventName %></span></p>
+                </div>
+                <div class="modal-body">
+                    <form action="/session/<%= session._id %>?_method=put" method="post">
+                        <p>Bạn cảm thấy bài giảng hôm nay như thế nào?</p>
+                        <div>
+                            <input type="radio" id="bad" value="0" name="answer">
+                            <label for="bad">Không tốt</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="good" value="1" name="answer">
+                            <label for="good">Tốt</label>
+                        </div>
+                        <div>
+                            <p for="feedback">Ý kiến đóng góp</p>
+                            <textarea name="feedback" id="feedback" cols="30" rows="10"></textarea>
+                        </div>
+                        <button>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div id="input-zone">
             <textarea rows="3" name="question" id="input-question" maxlength="200" placeholder="Nhập câu hỏi..."
                       onfocus="focusFunction()"></textarea><br>
@@ -37,6 +63,8 @@
     <table id="list-question" border="1px" cellspacing="0" cellpadding="5px"></table>
 </div>
 <script>
+    const surveyCreated = Boolean(<%= session.survey.isCreated %>);
+    const userHasTakenSurvey = Boolean(<%= session.survey.data.some(answer => answer.user == userInfo._id) %>);
     let userInfo = {
         id: '<%= userInfo._id %>',
         fullName: '<%= userInfo.fullName %>'

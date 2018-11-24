@@ -1,22 +1,6 @@
 function handleVoteQuestion(icon, vote) {
-    // xử lí phần hiển thị
-    // if (userInfo.id === vote.userID && !userMakeVote) {
-    //     icon.classList.toggle('vote-icon-clicked');
-    // }
     let count = icon.nextSibling.nextElementSibling;
-    // userMakeVote = false; // reset lại dấu
     count.innerText = vote.vote.length;
-    // xem liệu người dùng đã bình chọn cho câu hỏi hay chưa
-    // let question = questionData.get(vote._id);
-    // if (vote.vote.length > question.vote.length) {
-    //     question.vote.push(vote.userID);
-    //     questionData.set(vote._id, question);
-    // }
-    // else {
-    //     question.vote = question.vote.filter(userID => userID !== vote.userID);
-    //     questionData.set(vote._id, question);
-    // }
-    // sap xep lai cac cau hoi
     sortQuestions();
 }
 
@@ -63,45 +47,6 @@ function sortQuestions() {
         // table.rows[i].querySelector('.vote-zone .vote-icon').addEventListener('click', handleIconClick) // them su kien cho cac icon
     }
 }
-
-// hàm xử lí sự kiện icon click
-// function handleIconClick() {
-//     // đánh dấu người dùng đã vote câu hỏi
-//     userMakeVote = true;
-//     this.classList.toggle('vote-icon-clicked');
-//     let countSpan = this.nextSibling.nextElementSibling;
-//     let count = 0;
-//     const questionID = this.parentElement.parentElement.id;
-//     let question = questionData.get(questionID);
-//
-//     if (this.classList.contains('vote-icon-clicked')) {
-//         count = Number(countSpan.innerText) + 1;
-//     } else count = Number(countSpan.innerText) - 1;
-//     countSpan.innerHTML = loader.outerHTML;
-//     // xem liệu người dùng đã bình chọn cho câu hỏi hay chưa
-//     if (count > question.vote.length) {
-//         question.vote.push(userInfo.id);
-//         questionData.set(questionID, question);
-//     }
-//     else {
-//         question.vote = question.vote.filter(userID => userID !== userInfo.id);
-//         questionData.set(questionID, question);
-//     }
-//     // update vote cho câu hỏi lên server
-//     this.removeEventListener('click', handleIconClick);
-//     axios.put(`/api/question/${questionID}`, {vote: question.vote})
-//         .then(question => question.data)
-//         .then(question => {
-//             // đẩy dữ liệu qua kênh 'moreVoteQuestion'
-//             socket.emit('moreVoteQuestion', {
-//                 ...question,
-//                 userID: userInfo.id
-//             });
-//         })
-//         .catch(error => {
-//             console.log(error)
-//         })
-// }
 
 // hàm so sánh
 function compare(val_1, val_2) {
