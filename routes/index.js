@@ -1,6 +1,4 @@
-let questionHelper = require("../helpers/question"),
-    sessionHelper  = require('../helpers/session'),
-    userHelper     = require('../helpers/user'),
+let userHelper     = require('../helpers/user'),
     userType       = require('../models/userType'),
     router         = require('express').Router();
 const middleware = require("../middleware");
@@ -10,7 +8,7 @@ router.get('/', middleware.isNotLoggedIn, (req, res) => {
 });
 
 // route xác thực người dùng
-router.post('/login', middleware.isNotLoggedIn ,async (req, res) => {
+router.post('/login', middleware.isNotLoggedIn , async (req, res) => {
     try {
         const response = await userHelper.verifyUser(req.body.username, req.body.password);
         if (response) {
@@ -29,11 +27,17 @@ router.post('/login', middleware.isNotLoggedIn ,async (req, res) => {
 });
 
 // đăng xuất người dùng
-router.post('/logout', middleware.isLoggedIn, (req, res) => {
+router.get('/logout', middleware.isLoggedIn, (req, res) => {
     req.session.userInfo = undefined;
     res.redirect('/');
 });
 
+// chỉnh sửa thông tin cá nhân
+router.get('/profile', middleware.isLoggedIn, (req, res) => {
+    res.render('userProfile', {userInfo: req.session.userInfo});
+});
+
+// quản lí người dùng (admin)
 router.get('/admin/user', middleware.isAdmin, (req, res) => {
     res.render('userManagement')
 });

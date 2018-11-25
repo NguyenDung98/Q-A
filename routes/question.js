@@ -19,7 +19,7 @@ router.route(`${apiRoute}/:sessionID`)
 // cho sinh viên
 router.get('/session/:eventCode', middleware.isLoggedIn ,async (req, res) => {
     try {
-        const session = await sessionHelper.getSessionByID(req.query.id);
+        const session = await sessionHelper.getSessionByID_server(req.query.id);
         if (!session || session.eventCode !== req.params.eventCode) throw new Error('session not found');
         res.render('askingQuestion', {session, userInfo: req.session.userInfo, lastHref: req.headers.referer})
     } catch (error) {
@@ -30,7 +30,7 @@ router.get('/session/:eventCode', middleware.isLoggedIn ,async (req, res) => {
 
 router.get('/lecturer/session/:eventCode', middleware.isLecturerOrAdmin ,async (req, res) => {
     try {
-        const session = await sessionHelper.getSessionByID(req.query.id);
+        const session = await sessionHelper.getSessionByID_server(req.query.id);
         if (!session || session.eventCode !== req.params.eventCode) throw new Error('session not found');
         res.render('lecturerQuestion', {session, userInfo: req.session.userInfo, lastHref: req.headers.referer})
     } catch (error) {

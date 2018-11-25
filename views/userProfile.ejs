@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/userProfile/userProfile.css">
+</head>
+<body>
+	<div id="header">
+		Hồ sơ
+	</div>
+	<div id="body">
+		<div id="persional-details">
+			<div class="profile-content">
+				<label for="fullName">Tên hiển thị</label>
+				<input type="text" placeholder="Tên hiển thị" name="" class="input name" id="fullName" value="<%= userInfo.fullName %>">
+			</div>
+			<div class="profile-content">
+				<label for="new-pass">Mật khẩu mới</label>
+				<input type="password" name="" placeholder="Mật khẩu mới" class="input phone-num" id="new-pass">
+			</div>
+			<div class="profile-content">
+				<label for="re-newpass">Xác nhận mật khẩu</label>
+				<input type="password" name="" placeholder="Xác nhận mật khẩu" class="input company-name" id="re-newpass">
+			</div>
+			<!--<h5 class="error 1" id="error1">Mật khẩu không chính xác</h5>-->
+			<h5 class="error 2" id="error2">Mật khẩu không khớp</h5>
+			<div id="button">
+				<button class="button save" id="save-button" onclick="saveClick()">Lưu</button>
+				<!--<button class="button cancel" id="cancel-button">Hủy</button>-->
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	const userID = '<%= userInfo._id %>'
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/userProfile/userProfile.js"></script>
+</html>

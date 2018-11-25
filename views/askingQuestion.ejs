@@ -34,7 +34,7 @@
                     <form action="/session/<%= session._id %>?_method=put" method="post">
                         <p>Bạn cảm thấy bài giảng hôm nay như thế nào?</p>
                         <div>
-                            <input type="radio" id="bad" value="0" name="answer">
+                            <input type="radio" id="bad" checked value="0" name="answer">
                             <label for="bad">Không tốt</label>
                         </div>
                         <div>
@@ -42,10 +42,10 @@
                             <label for="good">Tốt</label>
                         </div>
                         <div>
-                            <p for="feedback">Ý kiến đóng góp</p>
-                            <textarea name="feedback" id="feedback" cols="30" rows="10"></textarea>
+                            <p>Ý kiến đóng góp: </p>
+                            <textarea name="feedback" id="feedback" cols="30" rows="7" placeholder="VD: Cần tăng tương tác..."></textarea>
                         </div>
-                        <button>Submit</button>
+                        <button id="send-button">Gửi</button>
                     </form>
                 </div>
             </div>

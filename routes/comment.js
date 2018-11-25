@@ -20,7 +20,7 @@ router.route(`${apiRoute}/:questionID`)
 // lấy tất cả các câu trả lời trong 1 câu hỏi
 router.get('/session/:eventCode/question/:order', middleware.isLoggedIn ,async (req, res) => {
     try {
-        const session = await sessionHelper.getSessionByID(req.query.id);
+        const session = await sessionHelper.getSessionByID_server(req.query.id);
         const question = await questionHelper.getQuestionByID(req.query.question);
         if (!session) throw new Error('session not found');
         if (!question) throw new Error('question not found');

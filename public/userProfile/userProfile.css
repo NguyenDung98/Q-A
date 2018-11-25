@@ -1,0 +1,81 @@
+body{
+	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f3f3f4;
+}
+
+button:focus, input:focus, textarea:focus {
+	outline: none;
+}
+
+
+label{
+	display: inline-block;
+	float: left;
+	width: 150px;
+}
+
+.profile-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+#body{
+	width: 40%;
+	margin: 100px auto 0;
+}
+
+#header{
+	font-size: 1.3em;
+    padding-top: 10px;
+	background-color: #325386d1;
+	text-align: center;
+	color: #ffdb4f;
+	height: 100px;
+}
+
+#body .input{
+	border: 2px solid #aaa;
+	border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit !important;
+    font-size: 1em;
+    padding: 10px;
+    vertical-align: middle;
+    width: 60%;
+}
+
+#body .select{
+	border: 2px solid #aaa;
+	border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit !important;
+    font-size: 1em;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+#body .button{
+	background-color: #325386d1;
+    cursor: pointer;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	float: right;
+	font-size: 0.9em;
+	margin-left: 10px;
+	padding: 15px 35px;
+}
+
+#body .button:hover{
+	background-color: rgba(62, 111, 174, 0.82);
+}
+
+#body .error{
+	color: red;
+	font-style: italic;
+	display: none;
+}

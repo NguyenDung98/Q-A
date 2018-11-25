@@ -28,13 +28,22 @@ module.exports = {
                 res.send(error)
             })
     },
-    getSessionByID(sessionID) {
+    getSessionByID_server(sessionID) {
         return db.Session.findById(sessionID)
             .then(session => {
                 return session
             })
             .catch(error => {
                 console.log(error);
+            })
+    },
+    getSessionByID(req, res) {
+        db.Session.findById(req.params.sessionID).populate('survey.data.user', 'fullName')
+            .then(session => {
+                res.json(session)
+            })
+            .catch(error => {
+                res.send(error)
             })
     },
     updateSession(req, res) {

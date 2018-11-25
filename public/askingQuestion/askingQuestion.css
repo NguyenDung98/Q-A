@@ -1,5 +1,8 @@
-body{
+body, textarea {
 	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
+}
+
+body{
 	margin: 0;
 	padding: 0;
 	background-color: #f3f3f4;
@@ -62,7 +65,7 @@ button:focus, input:focus, textarea:focus {
 	margin: 0 auto 50px;
 	word-break: break-all;
 }
-#input-question, #input-author{
+#survey-modal textarea ,#input-question, #input-author{
 	border: 2px solid #aaa;
 	border-radius: 5px;
     box-sizing: border-box;
@@ -72,7 +75,7 @@ button:focus, input:focus, textarea:focus {
     width: 100%;
 }
 
-#input-question {
+textarea {
     resize: none;
 }
 
@@ -81,7 +84,7 @@ button:focus, input:focus, textarea:focus {
     width: 60%;
 }
 
-#done-button, #cancel-button{
+#send-button, #done-button, #cancel-button{
 	background-color: #325386d1;
     cursor: pointer;
 	color: white;
@@ -93,11 +96,16 @@ button:focus, input:focus, textarea:focus {
 	padding: 15px 35px;
 }
 
+#send-button {
+	float: none;
+	margin: 8px 0;
+}
+
 #cancel-button {
     margin-right: 0;
 }
 
-#done-button:hover, #cancel-button:hover{
+#send-button:hover, #done-button:hover, #cancel-button:hover{
     background-color: rgba(62, 111, 174, 0.82)
 }
 
@@ -208,7 +216,6 @@ table {
 	font-size: 1.2em;
 }
 
-
 .backBtn {
 	background-color: transparent;
 	border: none;
@@ -222,23 +229,6 @@ table {
 .backBtn i {
 	color: white;
 	font-size: 40px;
-}
-
-
-#survey-button {
-	background-color: #325386d1;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	color: white;
-	display: block;
-	font-size: 0.9em;
-	margin: 0 auto 10px;
-	padding: 15px 35px;
-}
-
-#survey-button:hover {
-	background-color: rgba(62, 111, 174, 0.82)
 }
 
 #survey-modal {
@@ -256,7 +246,7 @@ table {
 
 /* Modal Header */
 .modal-header {
-	padding: 2px 16px;
+	padding: 2px 0 2px 16px;
 	background-color: #325386d1;
 	color: white;
 	font-style: italic;
@@ -265,18 +255,11 @@ table {
 
 .modal-header span {
 	font-style: normal;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 /* Modal Body */
 .modal-body {padding: 2px 16px;}
-
-/* Modal Footer */
-.modal-footer {
-	padding: 2px 16px;
-	background-color: #325386d1;
-	color: white;
-}
 
 /* Modal Content */
 .modal-content {
@@ -284,20 +267,24 @@ table {
 	margin: auto;
 	padding: 0;
 	border: 1px solid #888;
-	width: 80%;
+	width: 60%;
 }
 
 /* The Close Button */
 .close {
-	color: #aaaaaa;
+	background: none;
+	border: none;
+	color: white;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
+	width: 50px;
+	height: 50px;
 }
 
 .close:hover,
 .close:focus {
-	color: #000;
+	opacity: 0.5;
 	text-decoration: none;
 	cursor: pointer;
 }

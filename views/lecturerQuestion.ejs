@@ -24,11 +24,34 @@
 <div id="body">
     <div id="form-input">
         <h4 id="title">Dưới đây là tất cả các câu hỏi được đặt ra</h4>
+        <div id="report-modal" class="hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" onclick="closeReportModal()">&times;</button>
+                    <p>Thống kê khảo sát cho bài giảng: <span><%= session.eventName %></span></p>
+                </div>
+                <div class="modal-body">
+                    <canvas id="report-chart" width="500" height="500"/>
+                </div>
+            </div>
+        </div>
+        <div id="feedback-modal" class="hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" onclick="closeReportModal()">&times;</button>
+                    <p>Các ý kiến đóng góp cho bài giảng: <span><%= session.eventName %></span></p>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
         <button id="survey-button" onclick="makeSurvey(this, <%= session.survey.isCreated %>)">
             Tạo khảo sát về giờ học
         </button>
-        <button id="report-button">
+        <button id="report-button" onclick="showReportModal()">
             Thống kê khảo sát
+        </button>
+        <button id="feedback-button" onclick="showFeedbackModal()">
+            Các ý kiên đóng góp
         </button>
     </div>
 
@@ -43,6 +66,7 @@
 </script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 <script src="/lecturerQuestion/lecturerQuestion_1.js"></script>
 <script src="/lecturerQuestion/lecturerQuestion_2.js"></script>
 </body>

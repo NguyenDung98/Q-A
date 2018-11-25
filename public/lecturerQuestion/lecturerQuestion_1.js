@@ -3,8 +3,13 @@ let inputBox = document.getElementById('form-input'),
     voteIcons = document.getElementsByClassName('vote-icon'),
     userIdentity = document.querySelector('#user-id span'),
     sessionID = document.getElementsByTagName('body')[0].id,
-    surveyBtn = document.getElementById('survey-button');
+    surveyBtn = document.getElementById('survey-button'),
+    reportModal = document.getElementById('report-modal'),
+    reportChart = document.getElementById('report-chart'),
+    feedbackModal = document.getElementById('feedback-modal'),
+    feedbackContent = document.querySelector('#feedback-modal .modal-body');
 
+let chart = null;
 // local variables
 let userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
 let socket = io();
@@ -45,42 +50,6 @@ window.onkeydown = (e) => {
     }
 };
 
-// Thêm câu hỏi mới
-function addQuestion(newQuestion) {
-    const fullName = newQuestion.userFullName ? newQuestion.userFullName : newQuestion.user.fullName;
-    let replyButton = document.createElement("input");
-    replyButton.type = "button";
-    replyButton.classList.add("reply-button");
-    replyButton.value = "Reply";
-
-    let newRow = table.insertRow(0);
-
-    let cell1 = newRow.insertCell(0);
-    let cell2 = newRow.insertCell(1);
-    newRow.data = {
-        postTime: newQuestion.postTime
-    };
-    newRow.id = newQuestion._id;
-    newRow.classList.add('question-block');
-    cell1.innerHTML =
-        "<i class=\"fas fa-caret-up vote-icon\"></i><br>" +
-        `<span class=\"vote-count\">${newQuestion.vote.length}</span><br>` +
-        "<span>lượt</span>";
-    cell1.classList.add("vote-zone");
-    cell2.innerHTML =
-        `<span class="author">${fullName}</span><br>` +
-        `<span class="question">${newQuestion.question}</span>`;
-    // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
-    let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự
-    for (let i = 0; i < 3 - breakLines; i++) {
-        cell2.innerHTML += '<br/>';
-    }
-    if (breakLines > 2) cell2.innerHTML += '<br/>';
-    cell2.innerHTML += `<a type="button" onclick="gotoAnswerPage('${newQuestion._id}', '${newQuestion.order}')" class="reply-button">${newQuestion.comment} phản hồi</a>`;
-    // sap xep lai cac cau hoi
-    sortQuestions();
-}
-
 function gotoAnswerPage(questionID, questionOrder) {
     let uri = location.host + location.pathname.substring(location.pathname.indexOf('/', 1));
     window.history.replaceState({}, document.title, url);
@@ -97,4 +66,99 @@ function makeSurvey(surveyBtn, isCreated) {
         axios.put(`/api/session/${sessionID}`, updateData);
     }
     surveyBtn.disabled = true;
+}
+
+function showReportModal() {
+    reportModal.classList.remove('hidden');
+    axios.get(`/api/session/${sessionID}`)
+        .then(data => data.data)
+        .then(data => {
+            const filteredData = data.survey.data.reduce((accumulator, currentValue) => {
+                if (currentValue.answer === 0) {
+                    accumulator[0] += 1;
+                } else {
+                    accumulator[1] += 1;
+                }
+                return accumulator;
+            }, [0, 0]);
+            createChart(filteredData);
+        })
+}
+
+function closeReportModal() {
+    reportModal.classList.add('hidden');
+    feedbackModal.classList.add('hidden');
+}
+
+function showFeedbackModal() {
+    feedbackModal.classList.remove('hidden');
+    let feedbackDOM;
+    axios.get(`/api/session/${sessionID}`)
+        .then(data => data.data)
+        .then(data => {
+            feedbackDOM = data.survey.data.map(data => {
+                if (data.feedback) {
+                    return `
+                    <div>
+                        <p class="author">${data.user.fullName}</p>
+                        <p class="question-block">${data.feedback}</p>
+                        <hr>
+                    </div>`;
+                }
+            });
+            feedbackContent.innerHTML = '';
+            feedbackDOM.forEach(feedback => {
+                feedbackContent.innerHTML += feedback;
+            });
+        });
+}
+
+window.onclick = (e) => {
+    if (e.target.id === 'report-modal') {
+        reportModal.classList.add('hidden');
+    }
+    if (e.target.id === 'feedback-modal') {
+        feedbackModal.classList.add('hidden');
+    }
+};
+
+function createChart(data) {
+    if (!chart) {
+        chart = new Chart(reportChart, {
+            type: 'doughnut',
+            data: {
+                labels: ["Không tốt", "Tốt"],
+                datasets: [{
+                    data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    labels: {
+                        fontSize: 25
+                    },
+                },
+                tooltips: {
+                    titleFontSize: 25,
+                    bodyFontSize: 25
+                },
+                title: {
+                    display: true,
+                    text: 'Thống kê khảo sát của sinh viên về giờ học',
+                    fontSize: 40,
+                    fontFamily: 'Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif'
+                }
+            }
+        });
+    } else {
+        chart.data.datasets.forEach(oldData => {
+            oldData.data = data;
+        });
+        chart.update();
+    }
 }

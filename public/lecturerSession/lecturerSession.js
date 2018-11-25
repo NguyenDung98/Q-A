@@ -19,7 +19,7 @@ function dropclick() {
 }
 
 // lấy dữ liệu từ server
-axios.get(`/api/session/${userID}`)
+axios.get(`/api/session/user/${userID}`)
     .then(sessions => sessions.data)
     .then(sessions => {
         // eventList.removeChild(bigLoader);
