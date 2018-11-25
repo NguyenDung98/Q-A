@@ -23,13 +23,14 @@ axios.get(`/api/session/user/${userID}`)
     .then(sessions => sessions.data)
     .then(sessions => {
         // eventList.removeChild(bigLoader);
-        const hasExpiredSession = sessions.some(session => session.endDate < Date() && session.isClosed === false);
+        console.log(sessions);
+        const hasExpiredSession = sessions.some(session => new Date(session.endDate) < new Date() && session.isClosed === false);
         let confirmed = false;
         if (hasExpiredSession) {
             confirmed = window.confirm('Bạn có muốn đóng toàn bộ phiên quá hạn?');
         }
         sessions.forEach(session => {
-            if (session.endDate < Date() && !session.isClosed && confirmed) {
+            if (new Date(session.endDate) < Date() && !session.isClosed && confirmed) {
                 axios.put(`/api/session/${session._id}`, {isClosed: true});
                 session.isClosed = true;
             }
