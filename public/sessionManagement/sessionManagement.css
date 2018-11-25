@@ -2,7 +2,7 @@
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 50px;
+	margin-top: 10px;
 }
 
 .clear{
@@ -15,7 +15,7 @@
 }
 
 .fade{
-	opacity: 0.3;
+	opacity: 0.5;
 }
 
 .w3-bar {
@@ -89,3 +89,8 @@ i.fas {
 	font-size: 25px;
 }
 
+.top-menu-button{
+	background-color: inherit;
+	color: white;
+	cursor: pointer;
+}

@@ -3,11 +3,21 @@
 <head>
 	<title>Profile</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/userProfile/userProfile.css">
 </head>
 <body>
+	<% if (userInfo.role === 'lecturer') { %>
+		<% include ./partials/lecturerNavbar.ejs %>
+	<% } else if (userInfo.role === 'student') { %>
+        <% include ./partials/studentNavbar.ejs %>
+    <% } else if (userInfo.role === 'admin') { %>
+        <% include ./partials/adminNavbar.ejs %>
+    <% } %>
 	<div id="header">
-		Hồ sơ
+		Thông tin cá nhân
 	</div>
 	<div id="body">
 		<div id="persional-details">

@@ -18,6 +18,16 @@ axios.get('/api/user')
         console.log(error);
     });
 
+//hộp dropdown
+function dropclick() {
+    var click = document.getElementById("dropContent");
+    if (click.className.indexOf("w3-show") === -1) {
+        click.className += " w3-show";
+    } else {
+        click.className = click.className.replace(" w3-show", "");
+    }
+}
+
 function addDataToRow(userData) {
     let newRow = tableBody.insertRow();
     newRow.data = {

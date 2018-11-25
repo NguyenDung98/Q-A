@@ -2,6 +2,16 @@ var fullName = document.getElementById("fullName");
 var newPass = document.getElementById("new-pass");
 var reNewPass = document.getElementById("re-newpass")
 
+//hộp dropdown
+function dropclick() {
+    var click = document.getElementById("dropContent");
+    if (click.className.indexOf("w3-show") === -1) {
+        click.className += " w3-show";
+    } else {
+        click.className = click.className.replace(" w3-show", "");
+    }
+}
+
 function saveClick() {
     if (fullName.value.trim() === "") {
         fullName.style.border = "1px solid red";

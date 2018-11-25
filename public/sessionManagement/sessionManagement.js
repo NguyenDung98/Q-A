@@ -34,6 +34,17 @@ axios.get('/api/session/')
         console.log(error)
     });
 
+
+//hộp dropdown
+function dropclick() {
+    var click = document.getElementById("dropContent");
+    if (click.className.indexOf("w3-show") === -1) {
+        click.className += " w3-show";
+    } else {
+        click.className = click.className.replace(" w3-show", "");
+    }
+}
+
 // chuyen gia tri thang tu dang so sang dang chu
 function parseMonth(value) {
     var res = "";

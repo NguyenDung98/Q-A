@@ -3,19 +3,21 @@
 <head>
 	<title>Admin Panel</title>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" type="text/css" href="/sessionManagement/sessionManagement.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<body style="font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif; background-color: #325386d1">
+	<link rel="stylesheet" type="text/css" href="/sessionManagement/sessionManagement.css">
+<body style="font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif; background-color: #ebebec">
+	<% include ./partials/adminNavbar.ejs %>
+	<div class="w3-container w3-center w3-xxlarge" style="color: #ffdb4f; background-color: #325386d1; font-weight: 400; padding: 10px 0;">
+		Quản lý phiên hỏi đáp
+	</div>
 	<div class="container">
-		<div class="w3-container w3-center w3-xxlarge" style="color: #ffdb4f;">Quản lý phiên hỏi đáp</div>
 		<!--<div class="w3-container" style="margin-top: 100px; color: #ffdb4f;">Chọn một phiên hỏi đáp</div>-->
 
 
 		<!------------------------- MODAL ADD SESSION ---------------------------->
 		<div id="add-session-box" class="w3-modal" style="padding-top: 100px;">
 			<div class="w3-modal-content">
-				<header class="w3-container" style="background-color: #325386d1;">
+				<header class="w3-container" >
 					<span class="w3-button w3-right" id="close-modal-add-session" style="color: #ffdb4f;"><i class="fa fa-close"></i></span>
 					<h3 style="color: #ffdb4f;">Tạo phiên hỏi đáp</h3>
 				</header>
@@ -41,7 +43,7 @@
 		</div>
 
 		<!------------------- SESSION LIST --------------------------------->
-		<div class="w3-panel w3-white w3-round" style="overflow: auto; height: 450px;" id="list">
+		<div class="w3-panel w3-white w3-round" style="overflow: auto; height: 450px; border: 2px solid #aaa; border-radius: 5px;" id="list">
 
 		</div>
 

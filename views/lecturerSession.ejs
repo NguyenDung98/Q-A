@@ -12,34 +12,19 @@
 <body id="<%= userInfo._id %>">
 
 <!--------------TOP---------------->
-<div class="w3-bar" style="background-color: #325386d1;">
-    <a href="/session" class="w3-button w3-bar-item top-menu-button" style="text-decoration: none;top: 10px">Bảng điều khiển</a>
-
-    <a class="w3-bar-item top-menu-button w3-right w3-button" style="width: 5%">
-        <i class="fa fa-bell-o"></i>
-    </a>
-    <div class="w3-dropdown-click w3-right" style="padding:  0px">
-        <a class="w3-button w3-bar-item top-menu-button " onclick="dropclick()" style="border: none;margin: 0px">Tài
-            khoản
-            <i class="fa fa-angle-down"></i>
-        </a>
-        <div class="w3-dropdown-content w3-bar-block w3-border" id="dropContent" style="position: absolute; top: 30px">
-            <a href="/profile" class="w3-bar-item w3-button">Thông tin cá nhân</a>
-            <a href="/logout" class="w3-bar-item w3-button">Đăng xuất</a>
-            <!--<a href="#" class="w3-bar-item w3-button">Hồ sơ</a>-->
-        </div>
-    </div>
-</div>
-
+<% if (userInfo.role === 'lecturer') { %>
+<% include ./partials/lecturerNavbar.ejs %>
+<% } else if (userInfo.role === 'admin') { %>
+    <% include ./partials/adminNavbar.ejs %>
+<% } %>
 <!------------PAGE-CONTENT------------>
 <div class="container">
 
     <div class="w3-bar">
 
-        <label class="w3-bar-item" style="font-size: 20px; padding-left: 0">Các sự kiện của tôi</label>
-
-        <input class="w3-input w3-bar-item w3-right" type="text" name="search" placeholder="Tìm kiếm ...">
-        <i class="fa fa-search w3-right w3-round-medium" style="padding: 12px; background-color: white;"></i>
+        <label class="w3-bar-item" style="font-size: 20px; padding-left: 0">Các phiên hỏi đáp của tôi</label>
+        <!--<input class="w3-input w3-bar-item w3-right" type="text" name="search" placeholder="Tìm kiếm ...">-->
+        <!--<i class="fa fa-search w3-right w3-round-medium" style="padding: 12px; background-color: white;"></i>-->
 
     </div>
 
@@ -91,8 +76,8 @@
                         <div class="w3-bar-item">
                             <i class="fa fa-plus w3-xxlarge"></i>
                         </div>
-                        <div class="w3-bar-item w3-right" style="padding: 10px 25px 10px 10px">
-                            <lable style="display: block; font-size: 25px; text-align: center;">Tạo sự kiện mới</lable>
+                        <div class="w3-bar-item w3-right" style="padding: 20px">
+                            <label style="cursor: pointer;display: block; font-size: 20px; text-align: center;">Tạo phiên hỏi đáp mới</label>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,18 @@
 body, input {
-	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #f3f3f4;
 }
 
+body, input, h1 {
+	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif !important;
+}
+
 #header{
 	text-align: center;
 	font-weight: bold;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	width: 100%;
 }
 
@@ -285,6 +288,8 @@ table tr:nth-child(even){
 	margin-right: 30%;
 }
 
-#del{
-	font-family: Comic Sans MS;
+.top-menu-button{
+	background-color: inherit;
+	color: white;
+	cursor: pointer;
 }
