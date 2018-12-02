@@ -17,8 +17,8 @@
 </head>
 <body id="<%= question._id %>">
 <div id="top">
-    <a href="<%= lastHref %>" class="backBtn"><i class="fas fa-long-arrow-alt-left"></i></a>
-    <div class="container"><p id="event-name"><%= eventName %></p></div>
+    <a href="<%= lastHref %>" class="back-btn"><i class="fas fa-long-arrow-alt-left"></i></a>
+    <div class="container"><p id="event-name"><%= session.eventName %></p></div>
 </div>
 <div>
     <div class="container" style="padding-bottom: 0">
@@ -52,7 +52,11 @@
 <script>
     let userInfo = {
         id: '<%= userInfo._id %>',
-        fullName: '<%= userInfo.fullName %>'
+        fullName: '<%= userInfo.fullName %>',
+        role: '<%= userInfo.role %>'
+    }
+    let sessionOwner = {
+        id: '<%= session.user %>'
     }
 </script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

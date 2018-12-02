@@ -66,26 +66,37 @@ function addCommentToDOM(commentData) {
     var comment = document.createElement('div');
     date =  new Date(commentData.postTime);
 
-    comment.data = {
+    const correctAnswerDOM = {
+        displaySign: commentData.isRightAnswer ? "" : 'hidden',
+        displayBtn: commentData.isRightAnswer ? "checked-activated" : ''
+    };
+    const markCorrectDOM = userInfo.role === 'lecturer' && userInfo.id === sessionOwner.id ?
+        "<div style='display: inline'>" +
+        `<button class=\"check-btn\" onclick="toggleRightAnswer(this)"><i class=\"fas fa-check ${correctAnswerDOM.displayBtn}\"></i></button> ` +
+        "</div>" : "";
+        comment.data = {
         postTime: commentData.postTime
     };
     comment.classList.add('comment');
     comment.id = commentData._id; // thêm id cho mỗi comment
     comment.innerHTML =
         `<div class=\"people\">${fullName}&nbsp&nbsp&nbsp•</div>` +
-        `<div class=\"time\">${date.toLocaleTimeString()}&nbsp&nbsp&nbsp${date.toLocaleDateString()}</div>` +
+        `<div class=\"time\">${date.toLocaleTimeString()}&nbsp&nbsp&nbsp${date.toLocaleDateString()}
+            <span class="lecturer-review ${correctAnswerDOM.displaySign}"><i class="fas fa-star"></i> Câu trả lời đúng</span></div>` +
         `<p class="comment-content">${commentData.comment}</p>` +
         "<div class=\"vote-area\">" +
-        "<div style=\"float: left;\">" +
-        `<span class=\"upVote-count\">${commentData.voteUp.length}</span> ` +
-        `<button class=\"up-vote\" ><i class=\"fa fa-angle-up\"></i></button> ` +
-        "<span style=\"color:#d6d6d6\">|</span>" +
-        "</div>" +
-        "<div>" +
-        `<span class=\"downVote-count\" >${commentData.voteDown.length}</span> ` +
-        "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
-        "</div>" +
-        "</div>";
+            "<div style=\"float: left;\">" +
+                `<span class=\"upVote-count\">${commentData.voteUp.length}</span> ` +
+                `<button class=\"up-vote\" ><i class=\"fa fa-angle-up\"></i></button> ` +
+                "<span style=\"color:#d6d6d6\">|</span>" +
+            "</div>" +
+            "<div style='display: inline'>" +
+                `<span class=\"downVote-count\" >${commentData.voteDown.length}</span> ` +
+                "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
+                "<span style=\"color:#d6d6d6\">|</span>" +
+            "</div>" +
+        markCorrectDOM
+        + "</div>";
     // xem liệu người dùng đã bình chọn cho phản hồi hay chưa
     let voteUpBtn = comment.querySelector('.up-vote');
     let voteDownBtn = comment.querySelector('.down-vote');
@@ -127,3 +138,14 @@ function addEventToButton(button, type) {
     })
 }
 
+function toggleRightAnswer(checkBtn) {
+    const commentElement = checkBtn.parentNode.parentNode.parentNode;
+    const lecturerReview = commentElement.querySelector('.lecturer-review');
+    checkBtn.children[0].classList.toggle('checked-activated');
+    lecturerReview.classList.toggle('hidden');
+    if (!lecturerReview.classList.contains('hidden')) {
+        axios.put(`/api/answer/${commentElement.id}`, {isRightAnswer: true})
+    } else {
+        axios.put(`/api/answer/${commentElement.id}`, {isRightAnswer: false})
+    }
+}

@@ -97,7 +97,7 @@ function showFeedbackModal() {
         .then(data => data.data)
         .then(data => {
             feedbackDOM = data.survey.data.map(data => {
-                if (data.feedback) {
+                if (data.feedback.trim()) {
                     return `
                     <div>
                         <p class="author">${data.user.fullName}</p>
@@ -108,7 +108,9 @@ function showFeedbackModal() {
             });
             feedbackContent.innerHTML = '';
             feedbackDOM.forEach(feedback => {
-                feedbackContent.innerHTML += feedback;
+                if (feedback) {
+                    feedbackContent.innerHTML += feedback;
+                }
             });
         });
 }

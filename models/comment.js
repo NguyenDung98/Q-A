@@ -21,7 +21,8 @@ let commentSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Question'
 	},
-	postTime: Date
+	postTime: Date,
+	isRightAnswer: Boolean
 });
 
 let Comment = mongoose.model("Comment", commentSchema);

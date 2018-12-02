@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b081d47-74ac-4d8a-abe6-1ac151fe6d8b" name="Default" comment="update" />
+    <list default="true" id="2b081d47-74ac-4d8a-abe6-1ac151fe6d8b" name="Default" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/answerQuestion/answerQuestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/answerQuestion/answerQuestion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/askingQuestion/askingQuestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/askingQuestion/askingQuestion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lecturerSession/lecturerSession.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lecturerSession/lecturerSession.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/session/session.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/session/session.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/answerQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/answerQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/askingQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/askingQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/lecturerQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/lecturerQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/adminNavbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/adminNavbar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/lecturerNavbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/lecturerNavbar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/studentNavbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/studentNavbar.ejs" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,37 +32,40 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/sessionManagement/sessionManagement.js">
+        <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="59" lean-forward="true" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
+            <state relative-caret-position="68">
+              <caret line="70" column="72" lean-forward="true" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
               <folding>
-                <element signature="n#style#0;n#label#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#button#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#button#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/lecturerSession/lecturerSession.js">
+        <entry file="file://$PROJECT_DIR$/routes/comment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="26" column="97" lean-forward="true" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="97" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="435">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/answerQuestion.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="885">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1260">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
             </state>
           </provider>
         </entry>
@@ -64,7 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>closeNew</find>
       <find>closeNewEventBox</find>
       <find>userIndentify</find>
       <find>userIdentity</find>
@@ -77,7 +96,6 @@
       <find>commentID</find>
       <find>toggle</find>
       <find>userMakeVote</find>
-      <find>display: none</find>
       <find>todo</find>
       <find>hide</find>
       <find>hidden</find>
@@ -88,12 +106,14 @@
       <find>input-qu</find>
       <find>survey</find>
       <find>repo</find>
-      <find>put</find>
       <find>tạo</find>
       <find>&quot;Segoe UI</find>
       <find>#325386d1</find>
       <find>#39598a</find>
       <find>inherit</find>
+      <find>fas</find>
+      <find>display: none</find>
+      <find>put</find>
     </findStrings>
     <replaceStrings>
       <replace>questionInput</replace>
@@ -109,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/models/userType.js" />
         <option value="$PROJECT_DIR$/public/session/addSession.js" />
@@ -117,18 +136,12 @@
         <option value="$PROJECT_DIR$/helpers/user.js" />
         <option value="$PROJECT_DIR$/views/login.ejs" />
         <option value="$PROJECT_DIR$/routes/user.js" />
-        <option value="$PROJECT_DIR$/public/lecturerSession/lecturerSession.css" />
         <option value="$PROJECT_DIR$/models/question.js" />
         <option value="$PROJECT_DIR$/helpers/question.js" />
         <option value="$PROJECT_DIR$/public/answerQuestion/answerQuestion.js" />
-        <option value="$PROJECT_DIR$/models/comment.js" />
         <option value="$PROJECT_DIR$/public/askingQuestion/askingQuestion_2.js" />
-        <option value="$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js" />
         <option value="$PROJECT_DIR$/public/answerQuestion/answerQuestion_2.js" />
         <option value="$PROJECT_DIR$/routes/question.js" />
-        <option value="$PROJECT_DIR$/routes/comment.js" />
-        <option value="$PROJECT_DIR$/public/answerQuestion/answerQuestion.css" />
-        <option value="$PROJECT_DIR$/views/answerQuestion.ejs" />
         <option value="$PROJECT_DIR$/helpers/comment.js" />
         <option value="$PROJECT_DIR$/public/session/session.js" />
         <option value="$PROJECT_DIR$/middleware/index.js" />
@@ -142,24 +155,31 @@
         <option value="$PROJECT_DIR$/routes/session.js" />
         <option value="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion.css" />
         <option value="$PROJECT_DIR$/helpers/session.js" />
-        <option value="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js" />
         <option value="$PROJECT_DIR$/views/partials/navbar.ejs" />
         <option value="$PROJECT_DIR$/views/lecturerQuestion.ejs" />
         <option value="$PROJECT_DIR$/public/userProfile/userProfile.js" />
-        <option value="$PROJECT_DIR$/views/partials/studentNavbar.ejs" />
         <option value="$PROJECT_DIR$/public/userProfile/userProfile.css" />
         <option value="$PROJECT_DIR$/views/session.ejs" />
         <option value="$PROJECT_DIR$/views/userProfile.ejs" />
         <option value="$PROJECT_DIR$/views/lecturerSession.ejs" />
         <option value="$PROJECT_DIR$/views/userManagement.ejs" />
         <option value="$PROJECT_DIR$/public/userManagement/userManagement.js" />
-        <option value="$PROJECT_DIR$/public/session/session.css" />
         <option value="$PROJECT_DIR$/public/userManagement/userManagement.css" />
         <option value="$PROJECT_DIR$/views/sessionManagement.ejs" />
         <option value="$PROJECT_DIR$/public/sessionManagement/sessionManagement.css" />
-        <option value="$PROJECT_DIR$/views/partials/adminNavbar.ejs" />
-        <option value="$PROJECT_DIR$/public/lecturerSession/lecturerSession.js" />
         <option value="$PROJECT_DIR$/public/sessionManagement/sessionManagement.js" />
+        <option value="$PROJECT_DIR$/public/lecturerSession/lecturerSession.js" />
+        <option value="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js" />
+        <option value="$PROJECT_DIR$/views/partials/studentNavbar.ejs" />
+        <option value="$PROJECT_DIR$/public/session/session.css" />
+        <option value="$PROJECT_DIR$/views/partials/adminNavbar.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/lecturerNavbar.ejs" />
+        <option value="$PROJECT_DIR$/public/lecturerSession/lecturerSession.css" />
+        <option value="$PROJECT_DIR$/models/comment.js" />
+        <option value="$PROJECT_DIR$/public/answerQuestion/answerQuestion.css" />
+        <option value="$PROJECT_DIR$/routes/comment.js" />
+        <option value="$PROJECT_DIR$/views/answerQuestion.ejs" />
+        <option value="$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js" />
       </list>
     </option>
   </component>
@@ -170,60 +190,16 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="361" />
-    <option name="y" value="27" />
-    <option name="width" value="973" />
-    <option name="height" value="689" />
+    <option name="x" value="433" />
+    <option name="y" value="179" />
+    <option name="width" value="864" />
+    <option name="height" value="693" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="lecturerSession" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="userManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -261,6 +237,49 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="answerQuestion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="lecturerSession" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Q-A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Q-A" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,15 +301,15 @@
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\public\lecturerQuestion" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\public\userProfile" />
       <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\views" />
       <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\public\sessionManagement" />
       <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\public\userManagement" />
       <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\public\answerQuestion" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dung\Desktop\Web\In-class homework\Q-A\public\lecturerQuestion" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -384,6 +403,10 @@
       <workItem from="1543045429206" duration="13740000" />
       <workItem from="1543126385392" duration="24565000" />
       <workItem from="1543162984910" duration="624000" />
+      <workItem from="1543164022818" duration="73000" />
+      <workItem from="1543202826424" duration="1075000" />
+      <workItem from="1543655369732" duration="7186000" />
+      <workItem from="1543732156417" duration="620000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1541348688388</created>
@@ -511,11 +534,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543163591293</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update">
+      <created>1543164070269</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1543164070269</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194442000" />
+    <option name="totallyTimeSpent" value="203396000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -542,7 +572,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32847896" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49926794" weight="0.3008547" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49926794" visible="true" weight="0.37264958" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50073206" side_tool="true" weight="0.32847896" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49926794" weight="0.32847896" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
@@ -602,52 +632,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lecturerSession/lecturerSession.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/userType.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/question.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/comment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="190" column="1" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
@@ -679,20 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="11" selection-start-line="11" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/comment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/answerQuestion.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -766,20 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/session.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="109" column="45" lean-forward="true" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -815,18 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/studentNavbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/userProfile/userProfile.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -848,19 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/lecturerNavbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="10" lean-forward="true" selection-end-line="18" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/lecturerSession.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -869,13 +804,6 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#a#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#div#0;n#a#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/session/session.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -942,17 +870,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/sessionManagement/sessionManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/session/session.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/lecturerNavbar.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/adminNavbar.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
+        <state relative-caret-position="343">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/studentNavbar.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="9" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="118" column="40" lean-forward="true" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lecturerSession/lecturerSession.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="38" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/userType.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/comment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/lecturerSession/lecturerSession.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="26" column="97" lean-forward="true" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="97" />
+        <state relative-caret-position="339">
+          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -966,18 +957,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/sessionManagement/sessionManagement.js">
+    <entry file="file://$PROJECT_DIR$/models/session.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="59" lean-forward="true" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
+        <state relative-caret-position="263">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="70" column="72" lean-forward="true" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/comment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/answerQuestion.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>

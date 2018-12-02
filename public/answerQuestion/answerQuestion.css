@@ -34,7 +34,6 @@ button:focus, textarea:focus {
 	font-size: 14px;
 }
 
-
 .time{
 	/* padding-left: 10px; */
 	padding-top: 5px;
@@ -89,7 +88,7 @@ button:focus, textarea:focus {
 
 #lecturer{
 	display: block;
-	padding: 10px;	
+	padding: 10px;
 }
 
 #question-content{
@@ -155,8 +154,12 @@ img.profile-circle{
 	padding: 10px;
 }
 
-button.comment-enter{
+button {
 	border: none;
+	cursor: pointer;
+}
+
+button.comment-enter{
 	background-color: inherit;
 	width: 150px;
 	height: 50px;
@@ -164,7 +167,6 @@ button.comment-enter{
 }
 
 button.up-vote, button.down-vote{
-	border: none;
 	background-color: inherit;
 	padding: 0;
 	padding-right: 5px;
@@ -175,17 +177,38 @@ p.upVote-count, p.downVote-count{
 }
 
 
-.backBtn {
+.back-btn {
 	background-color: transparent;
-	border: none;
-	cursor: pointer;
 	float: left;
 	margin-left: 20px;
 	position: absolute;
 	padding: 10px;
 }
 
-.backBtn i {
+.back-btn i {
 	color: white;
 	font-size: 40px;
+}
+
+.check-btn {
+	background-color: transparent;
+	display: inline;
+}
+
+.check-btn i {
+	color: #898b95;
+	font-size: 17px;
+}
+
+.checked-activated {
+	color: #00b200 !important;
+}
+
+.hidden {
+	display: none;
+}
+
+.lecturer-review {
+	float: right;
+	color: #eabc08;
 }

@@ -168,7 +168,7 @@ table {
 	display: none;
 }
 
-.backBtn {
+.back-btn {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -178,7 +178,7 @@ table {
 	padding: 10px;
 }
 
-.backBtn i {
+.back-btn i {
 	color: white;
 	font-size: 40px;
 }
