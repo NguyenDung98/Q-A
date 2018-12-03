@@ -3,21 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2b081d47-74ac-4d8a-abe6-1ac151fe6d8b" name="Default" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/answerQuestion/answerQuestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/answerQuestion/answerQuestion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/askingQuestion/askingQuestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/askingQuestion/askingQuestion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lecturerQuestion/lecturerQuestion_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lecturerSession/lecturerSession.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lecturerSession/lecturerSession.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/session/session.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/session/session.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/answerQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/answerQuestion.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/askingQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/askingQuestion.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/lecturerQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/lecturerQuestion.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/adminNavbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/adminNavbar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/lecturerNavbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/lecturerNavbar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/studentNavbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/studentNavbar.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,13 +16,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="70" column="72" lean-forward="true" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
+            <state relative-caret-position="1230">
+              <caret line="82" column="57" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/session/session.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="249" column="7" selection-start-line="249" selection-start-column="7" selection-end-line="249" selection-end-column="7" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -406,7 +407,8 @@
       <workItem from="1543164022818" duration="73000" />
       <workItem from="1543202826424" duration="1075000" />
       <workItem from="1543655369732" duration="7186000" />
-      <workItem from="1543732156417" duration="620000" />
+      <workItem from="1543732156417" duration="724000" />
+      <workItem from="1543762270274" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1541348688388</created>
@@ -541,11 +543,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543164070269</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="update">
+      <created>1543733114021</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1543733114021</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203396000" />
+    <option name="totallyTimeSpent" value="203513000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -570,9 +579,9 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39968404" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32847896" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32820514" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49926794" visible="true" weight="0.37264958" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49926794" weight="0.37264958" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50073206" side_tool="true" weight="0.32847896" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49926794" weight="0.32847896" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
@@ -846,23 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/session/session.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="1" selection-start-line="9" selection-end-line="18" selection-end-column="1" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/userProfile/userProfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -966,11 +958,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/answerQuestion/answerQuestion_1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="70" column="72" lean-forward="true" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="1230">
+          <caret line="82" column="57" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -992,6 +981,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1260">
           <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/session/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="249" column="7" selection-start-line="249" selection-start-column="7" selection-end-line="249" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
