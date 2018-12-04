@@ -18,3 +18,5 @@ node app.js
 ```
 - Vào [đây](http://localhost:3000/home) hoặc nhập localhost:3000 vào url để truy cập ứng dụng.
 - Khi muốn dừng ứng dụng thì sử dụng tổ hợp phim `Ctr + C` tại cmd hoặc git bash
+- Tài khoản: admin
+- Mật khẩu: admin
